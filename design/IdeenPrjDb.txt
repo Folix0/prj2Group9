@@ -1,0 +1,102 @@
+
+Ideen Prj Database
+
+
+
+Relation Customer
+- first Name
+- last name 
+- Password 
+- Username
+- Customer Id
+- Email
+- OrderId (one to multiple orders can be associated to one customer and one customer can have one or more orders)
+- Birthdate (required?)
+- phonenumber (required?)
+- address (required?)
+
+Relation Employee
+- first Name
+- last name 
+- Username
+. password
+- employeeId
+- email
+- deparment 
+- birthdate (required??)
+
+relation driver
+- first name (?required)
+- last name (required?)
+- username
+- passowrd
+- driver id
+- email
+- birthdate (?required)
+- hazardous license 
+- available (maybe fahrten/ journeys/ trips??? with dates) (when using availabel the system needs to compute the period/timespan
+in which the driver is available on basis of the local date and the information from the delivery date, else the corresponding 
+employee needs to check if the driver is available for the indicated delovery date) 
+
+
+
+relation truck
+- truck id 
+- kms driven (compute the maintenance check date from it)
+- avaiable (maybe fahrten/ journeys/ trips??? with dates)
+- last check date
+- regular time to check (in kms or years) -> compute with help of last check date)
+
+
+relation trailer
+- capacity
+- trailer id 
+- cleaned 
+- available (maybe fahrten/ journeys/ trips??? with dates)
+- last check date 
+- regular time to check (in kms or years) -> (compute with help of last check date) 
+
+
+Relation order
+- order id
+- pickup location
+- destination address
+- destination postcode
+- amount 
+- deliverydate
+- hazardous liquid
+- customer id 
+
+
+Relation work order plan 
+- work order plan id 
+- order id
+- pickup loc
+- destination address
+- destination postcode
+- deliverydate
+- hazardous liquid
+- driver id 
+- truck id 
+- trailer id 
+
+relation quotation 
+- order id 
+- cus id
+- emial 
+- amount
+- deliverydate
+- destination address
+- dest postocde
+- pickup location 
+- total price
+- hazardous
+- total price
+
+relation invoice
+- order id 
+- customer id 
+- invoice id 
+- customer email 
+ -total price
+

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="1100.0" minHeight="-Infinity" minWidth="1100.0" prefHeight="650.0" prefWidth="1100.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Fx.MainFx">
+   <top>
+      <Label alignment="CENTER" text="DRIVER" textFill="WHITE" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="17.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets top="15.0" />
+         </BorderPane.margin>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </Label>
+   </top>
+   <center>
+      <TabPane prefHeight="200.0" prefWidth="200.0" stylesheets="@Stylesheet.css" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="INFORMATION">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView layoutX="52.0" layoutY="72.0" prefHeight="543.2" prefWidth="900.0" stylesheets="@Stylesheet.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                              <TableColumn prefWidth="110.0" text="Driver Id" />
+                            <TableColumn prefWidth="110.0" text="Truck Id" />
+                            <TableColumn prefWidth="110.0" text="Trailer Id" />
+                              <TableColumn prefWidth="214.1333770751953" text="Trailer Pickup Location" />
+                              <TableColumn minWidth="2.39996337890625" prefWidth="92.7999267578125" text="Type" />
+                              <TableColumn minWidth="2.39996337890625" prefWidth="162.39990234375" text="Load Location" />
+                              <TableColumn minWidth="2.39996337890625" prefWidth="117.60009765625" text="Load Amount" />
+                              <TableColumn minWidth="2.39996337890625" prefWidth="163.1998291015625" text="Hazardous" />
+                              <TableColumn minWidth="2.39996337890625" prefWidth="316.80029296875" />
+                          </columns>
+                           <padding>
+                              <Insets bottom="15.0" />
+                           </padding>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="DELIVERY">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView layoutX="40.0" layoutY="72.0" prefHeight="543.2" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                              <TableColumn prefWidth="150.0" text="Unload Amount" />
+                              <TableColumn prefWidth="300.0" text="Delivery Address" />
+                              <TableColumn prefWidth="110.0" text="Delivery Postcode" />
+                              <TableColumn prefWidth="164.0" text="Delivery Date" />
+                              <TableColumn minWidth="9.5999755859375" prefWidth="375.20001220703125" />
+                          </columns>
+                           <padding>
+                              <Insets bottom="15.0" />
+                           </padding>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+         <BorderPane.margin>
+            <Insets top="-20.0" />
+         </BorderPane.margin>
+      </TabPane>
+   </center>
+</BorderPane>

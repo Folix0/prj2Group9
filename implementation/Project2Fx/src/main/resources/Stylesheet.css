@@ -1,0 +1,192 @@
+.dbutton {
+    -fx-background-color: black;
+    -fx-background-radius: 0;
+}
+
+.dbutton:hover {
+    -fx-text-fill: black;
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+
+}
+
+.cbutton {
+    -fx-background-color: black;
+    -fx-background-radius: 0;
+}
+
+.cbutton:hover {
+    -fx-text-fill: black;
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+
+}
+
+
+
+.lbutton {
+    -fx-background-color: black;
+    -fx-background-radius: 0;
+}
+
+.lbutton:hover {
+    /*fx-background-color: #424141;*/
+    -fx-text-fill: black;
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+}
+
+.test {
+    -fx-background-color: black;
+    -fx-border-radius: 0;
+    -fx-border-color: white;
+}
+
+.test:hover {
+    -fx-background-color: black;
+    -fx-effect: dropshadow(three-pass-box, rgba(77, 88, 109, 0.8), 10, 0, 0, 0);
+    -fx-border-color: grey;
+}
+
+/*black button*/
+.bb {
+    -fx-background-color: black;
+    -fx-border-radius: 0;
+    -fx-border-color: white;
+}
+
+.bb:hover {
+    -fx-background-color: black;
+    -fx-effect: dropshadow(three-pass-box, rgba(77, 88, 109, 0.8), 10, 0, 0, 0);
+    -fx-border-color: grey;
+}
+
+.dd {
+    -fx-background-color: black;
+    -fx-border-radius: 0;
+    -fx-border-color: white;
+}
+
+.dd:hover {
+    -fx-background-color: black;
+    -fx-effect: dropshadow(three-pass-box, rgba(77, 88, 109, 0.8), 10, 0, 0, 0);
+    -fx-border-color: grey;
+}
+
+/*seperator*/
+.s *.line {
+
+    /*-fx-border-color: linear-gradient(#131313 0%, #424141 15%);*/
+    -fx-border-color: linear-gradient(#131313 0%, white 20%);
+    -fx-border-style: solid;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab-pane {
+    -fx-tab-min-width: 120;
+    -fx-border-radius: 0;
+}
+
+.tab {
+    -fx-padding: 7;
+    -fx-background-radius: 0;
+    -fx-background-color: black;
+    -fx-border-radius: 0;
+}
+
+.tab-label {
+    -fx-text-fill: white;
+    -fx-focus-color: transparent;
+}
+
+.tab-pane .tab:selected {
+    -fx-border-color: white;
+    -fx-focus-color: transparent;
+}
+
+.tab:selected .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: white;
+    -fx-focus-color: transparent;
+}
+
+.root {
+    -fx-background-color: #262626;
+}
+
+.table-view {
+    -fx-background-color: transparent;
+    -fx-background-image: url("/icons/test.png");
+}
+
+.table-view:focused {
+    -fx-background-color: transparent;
+}
+
+/* Spaltenköpfe
+    Struktur column-header-background -> column-header */
+
+.table-view .column-header-background {
+   /* -fx-background-color: linear-gradient(#131313 0%, #424141 15%);*/
+    -fx-background-color: linear-gradient(black 0%, white 20%);
+    -fx-padding: 7;
+}
+
+.table-view .column-header-background .label {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-font-family: Arial;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell {
+    -fx-text-fill: white;
+}
+
+.table-row-cell {
+    -fx-background-color: -fx-table-cell-border-color, #616161;
+    -fx-background-insets: 0, 0 0 1 0;
+
+}
+
+.table-row-cell:odd {
+    -fx-background-color: -fx-table-cell-border-color, #424242;
+    -fx-background-insets: 0, 0 0 1 0;
+
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #005797;
+    -fx-background-insets: 0;
+    -fx-background-radius: 1;
+}
+
+.table-view > .virtual-flow > .scroll-bar:vertical,
+.table-view > .virtual-flow > .scroll-bar:vertical > .track,
+.table-view > .virtual-flow > .scroll-bar:vertical > .track-background,
+.table-view > .virtual-flow > .scroll-bar:horizontal,
+.table-view > .virtual-flow > .scroll-bar:horizontal > .track,
+.table-view > .virtual-flow > .scroll-bar:horizontal > .track-background {
+    -fx-background-color: transparent;
+}
+
+.table-view > .virtual-flow > .scroll-bar > .increment-button,
+.table-view > .virtual-flow > .scroll-bar > .decrement-button {
+    -fx-opacity: 0;
+}
+.text-field {
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+}
+.date-picker {
+    -fx-background-radius: 0;
+}
+
+
+
