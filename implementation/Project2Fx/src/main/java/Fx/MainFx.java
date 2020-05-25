@@ -9,14 +9,17 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 
 public class MainFx extends Application {
     private static Stage primaryStage;
     private static BorderPane mainLayout;
-
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage primaryStage) throws IOException, InterruptedException {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("We Truck that");
         Image image = new Image("/icons/Logo_prj2_png.png");
@@ -79,17 +82,19 @@ public class MainFx extends Application {
         addDialogStage.showAndWait();
     }
 
-    public static void showTestStage() throws IOException {
+    public static void showCustomerStage() throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(MainFx.class.getResource("/UserTestFxml.fxml"));
-        BorderPane userTestFxml = loader.load();
-        Scene scene = new Scene(userTestFxml);
-        Stage addTestStage = new Stage();
-        addTestStage.setTitle("Test");
-        addTestStage.initModality(Modality.WINDOW_MODAL);// background selection not available
-        addTestStage.initOwner(primaryStage);
-        addTestStage.setScene(scene);
-        addTestStage.showAndWait();
+        loader.setLocation(MainFx.class.getResource("/CustomerWindow.fxml"));
+        BorderPane customerFxml = loader.load();
+        Stage customerDialogStage = new Stage();
+        customerDialogStage.setTitle("Customer");
+        Image image = new Image("/icons/Logo_prj2_png.png");
+        customerDialogStage.getIcons().add(image);
+        customerDialogStage.initModality(Modality.WINDOW_MODAL);// background selection not available
+        customerDialogStage.initOwner(primaryStage);
+        Scene scene = new Scene(customerFxml);
+        customerDialogStage.setScene(scene);
+        customerDialogStage.showAndWait();
     }
 }
 

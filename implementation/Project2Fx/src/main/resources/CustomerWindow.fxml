@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Fx.CustomerViewController">
+   <bottom>
+      <TabPane prefHeight="657.0" prefWidth="1100.0" stylesheets="@Stylesheet.css" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab text="PLACE ORDER">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="950.0" style="-fx-background-color: #000000;" stylesheets="@Stylesheet.css">
+                     <children>
+                        <GridPane layoutX="21.0" layoutY="62.0" prefHeight="330.0" prefWidth="370.0" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="62.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.20001220703125" minWidth="10.0" prefWidth="150.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="225.79998779296875" minWidth="10.0" prefWidth="200.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label stylesheets="@Stylesheet.css" text="Full Name" textFill="WHITE" />
+                              <Label GridPane.rowIndex="1" />
+                              <Label text="Email" textFill="WHITE" GridPane.rowIndex="1" />
+                              <Label text="Birthdate" textFill="WHITE" GridPane.rowIndex="2" />
+                              <Label text="Phone Number" textFill="WHITE" GridPane.rowIndex="3" />
+                              <Label text="Home Address" textFill="WHITE" GridPane.rowIndex="4" />
+                              <TextField fx:id="name" GridPane.columnIndex="1" />
+                              <TextField fx:id="email" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="phonenr" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="address" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <DatePicker fx:id="birthdate" prefHeight="26.0" prefWidth="221.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                           </children>
+                        </GridPane>
+                        <GridPane layoutX="573.0" layoutY="62.0" prefHeight="330.0" prefWidth="370.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="62.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="181.20001220703125" minWidth="10.0" prefWidth="150.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="217.20001220703125" minWidth="10.0" prefWidth="200.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Pickup Location" textFill="WHITE" />
+                              <Label text="Destination Address" textFill="WHITE" GridPane.rowIndex="1" />
+                              <Label text="Destination Postcode" textFill="WHITE" GridPane.rowIndex="2" />
+                              <Label text="Amount in Tons" textFill="WHITE" GridPane.rowIndex="3" />
+                              <Label text="Delivery Date" textFill="WHITE" GridPane.rowIndex="4" />
+                              <Label text="Hazardous" textFill="WHITE" GridPane.rowIndex="5" />
+                              <TextField fx:id="pickuplocation" GridPane.columnIndex="1" />
+                              <TextField fx:id="destinationaddress" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="destinationpostcode" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="amountintons" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <CheckBox fx:id="hazardouscus" mnemonicParsing="false" prefHeight="11.0" prefWidth="119.0" text="Hazardous" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <DatePicker fx:id="deliverydate" prefHeight="26.0" prefWidth="218.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                           </children>
+                        </GridPane>
+                        <Label layoutX="320.0" layoutY="19.0" prefHeight="18.0" prefWidth="109.0" text="CUSTOMER DETAILS" textFill="WHITE" AnchorPane.bottomAnchor="577.0" AnchorPane.topAnchor="19.0" />
+                        <Label layoutX="670.0" layoutY="19.0" text="ORDER DETAILS" textFill="WHITE" AnchorPane.topAnchor="19.0" />
+                        <Separator layoutY="36.0" prefHeight="11.0" prefWidth="430.0" AnchorPane.topAnchor="36.0" />
+                        <Separator layoutX="691.0" layoutY="38.0" prefHeight="8.0" prefWidth="430.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="38.0" />
+                        <Button fx:id="sendbutton" layoutX="969.0" layoutY="558.0" mnemonicParsing="false" onAction="#handleSendButtonAction" prefWidth="90.0" styleClass="bb" stylesheets="@Stylesheet.css" text="SEND ORDER" textFill="WHITE" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="SEE QUOTATION">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #000000;" stylesheets="@Stylesheet.css">
+                     <children>
+                        <TableView layoutY="38.0" prefHeight="516.0" prefWidth="1100.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                          <columns>
+                            <TableColumn prefWidth="95.99999696016312" text="Order Id" />
+                            <TableColumn prefWidth="96.0" text="Customer Id" />
+                              <TableColumn minWidth="0.0" prefWidth="102.40000915527344" text="Email" />
+                              <TableColumn prefWidth="87.20001220703125" text="Amount" />
+                              <TableColumn prefWidth="103.20001220703125" text="Delivery Date" />
+                              <TableColumn prefWidth="142.4000244140625" text="Destination Address" />
+                              <TableColumn prefWidth="132.7999267578125" text="Destination Postcode" />
+                              <TableColumn prefWidth="124.79998779296875" text="Pickup Location " />
+                              <TableColumn minWidth="0.0" prefWidth="84.0" text="Hazardous" />
+                              <TableColumn prefWidth="98.39996337890625" text="Total Price" />
+                              <TableColumn prefWidth="44.7999267578125" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="14.0" layoutY="19.0" text="SENDED QUOTATIONS" textFill="WHITE" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="19.0" />
+                        <Button layoutX="981.0" layoutY="572.0" mnemonicParsing="false" prefWidth="90.0" styleClass="bb" stylesheets="@Stylesheet.css" text="ACCEPT" textFill="WHITE" />
+                        <Button layoutX="867.0" layoutY="572.0" mnemonicParsing="false" prefWidth="90.0" styleClass="bb" stylesheets="@Stylesheet.css" text="DECLINE" textFill="WHITE" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="SEE INVOICE">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #000000;" stylesheets="@Stylesheet.css">
+                     <children>
+                        <TableView layoutY="78.0" prefHeight="413.0" prefWidth="950.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                          <columns>
+                            <TableColumn prefWidth="110.39999085664749" text="Order Id" />
+                            <TableColumn prefWidth="100.80001831054688" text="Customer Id" />
+                              <TableColumn prefWidth="94.40003967285156" text="Invoice Id" />
+                              <TableColumn prefWidth="115.20001220703125" text="Amount" />
+                              <TableColumn prefWidth="127.20001220703125" text="Total Price" />
+                              <TableColumn prefWidth="100.800048828125" text="Hazardous" />
+                              <TableColumn prefWidth="120.0" text="Deliverydate" />
+                              <TableColumn prefWidth="326.39996337890625" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="21.0" layoutY="22.0" text="INVOICE" textFill="WHITE" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="19.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </bottom>
+   <top>
+      <Label text="CUSTOMER" textFill="WHITE" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="17.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
+      </Label>
+   </top>
+</BorderPane>

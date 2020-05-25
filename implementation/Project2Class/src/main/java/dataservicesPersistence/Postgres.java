@@ -2,7 +2,7 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+ *//*
 package dataservicesPersistence;
 
 import org.postgresql.ds.PGConnectionPoolDataSource;
@@ -15,7 +15,7 @@ public class Postgres {
     private static final String DB_NAME = "postgres";
     private static final String DB_USER = "postgres";
     private static final String DB_PWD = "mypassword";
-    
+
     private PGConnectionPoolDataSource source;
 
 
@@ -46,4 +46,7 @@ public class Postgres {
     protected ResultSet executeQuery(String sql) throws SQLException {
         return getConnection().createStatement().executeQuery(sql);
     }
+
+
 }
+*/

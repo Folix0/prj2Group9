@@ -5,15 +5,15 @@
  */
 
 package services;
-
-import businessLogic.AccountantOrder;
-import dataservicesPersistence.AccountantOrderDAOlite;
+/*
+import dataservicesPersistence.AccountantOrderDAOlite;*/
 import dataservicesPersistence.DAOlite;
-
+import entities.AccountantOrder;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
+/*
 
 public class AccountantOrderService {
 
@@ -28,17 +28,18 @@ public class AccountantOrderService {
     }
 
     public List<AccountantOrder> getAllAccountantOrders() {
-        // usage without database
-        AccountantOrder p1 = new AccountantOrder(1, 200.5, "test", 4577, "sdfgh", Date.valueOf("2002.12.12"), true, "sdfgzhu", 25.25);
-        AccountantOrder p2 = new AccountantOrder(2, 200.5, "test", 4577, "sdfgh", Date.valueOf("2000.12.12"), true, "sdfgzhu", 25.25);
+        /*usage without database
+        AccountantOrder p1 = new AccountantOrder(1, 200.5, "test", 4577, "sdfgh", LocalDate.parse("2002-12-12"), true, "sdfgzhu", 25.25);
+        AccountantOrder p2 = new AccountantOrder(2, 200.5, "test", 4577, "sdfgh", LocalDate.parse("2000.12.12"), true, "sdfgzhu", 25.25);
 
         List<AccountantOrder> accountantorders = new ArrayList<>();
         accountantorders.add(p1);
         accountantorders.add(p2);
 
         return accountantorders;
-
+    */
+       /* return null;
     }
 }
-
+*/
 

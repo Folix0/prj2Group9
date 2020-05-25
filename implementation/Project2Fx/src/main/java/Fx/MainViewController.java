@@ -20,8 +20,8 @@ public class MainViewController {
     }
 
     @FXML
-    private void goTest() throws IOException { // implementation of back button
-        mainFx.showTestStage();
+    private void goCustomer() throws IOException { // implementation of back button
+        mainFx.showCustomerStage();
 
 
     }

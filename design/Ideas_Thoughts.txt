@@ -1,0 +1,17 @@
+Thoughts of how to implement certain things:
+
+- driver: boolean is available smart idea?
+- driver: calculate Availability method to calculate on basis of local date if the driver is available -> takes a local date of now 
+and compares with info deliverydate if the driver is available on that day 
+
+
+
+Truck, Trailer
+-how do we want to calcualte when the truck, trailer are available? 
+
+- maintenance: calculate date -> need to save kilometers driven in db and calcualte on basis of standard value for when
+the truck needs to be chekced (which is to be stored in the db as well) and then compare the computed date to the local date and 
+display a boolean if the truck, trailer is under maintancance 
+
+
+

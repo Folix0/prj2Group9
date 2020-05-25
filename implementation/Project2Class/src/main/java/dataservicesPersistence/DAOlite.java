@@ -5,13 +5,32 @@
  */
 package dataservicesPersistence;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
+public interface DAOlite<T, I> {
 
+    Optional<T> get(int id);
+
+    Collection<T> getAll();
+
+    Optional<I> save(T t);
+
+    void update(T t);
+
+    void delete(T t);
+}
+
+/*
 public interface DAOlite<T> {
     T save(T e);
-    T get(int id);
+
+    Optional<T> get(int id);
+
     List<T> getAll();
-    T update(T e);
-    void delete(int id);
-}
+
+    void update(T e);
+
+    void delete(T t);
+}*/
