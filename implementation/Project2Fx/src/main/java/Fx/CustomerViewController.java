@@ -11,7 +11,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Window;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
@@ -97,9 +99,9 @@ public class CustomerViewController implements Initializable {
 
     }
 
-   /* public void whenPostJsonUsingHttpClient_thenCorrect() throws ClientProtocolException, IOException {
+    public void whenPostJsonUsingHttpClient_thenCorrect() throws ClientProtocolException, IOException {
         CloseableHttpClient client = HttpClients.createDefault();
-        HttpPost httpPost = new HttpPost("http://www.example.com/%22);
+        HttpPost httpPost = new HttpPost("http://www.example.com/%22");
 
          String json = "{"id":1,"name":"John"}";
         StringEntity entity = new StringEntity(json);
@@ -110,7 +112,7 @@ public class CustomerViewController implements Initializable {
         CloseableHttpResponse response = client.execute(httpPost);
         assertThat(response.getStatusLine().getStatusCode(), equalTo(200));
         client.close();
-    }*/
+    }
     //TODO whenever the send order button is pressed the details shall be stored in the db
     //ToDO retireve data from db and display them in account order table
 

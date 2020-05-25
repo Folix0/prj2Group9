@@ -17,9 +17,6 @@ public class AccountantOrder {
 
     public AccountantOrder() {}
 
-
-
-
     public AccountantOrder(int customerId, double amount, String destinationAddress, int destinationPostcode, String pickupAddress, LocalDate deliveryDate, boolean hazardous, String email, double totalPrice) {
         this.customerId = customerId;
         this.amount = amount;
@@ -140,6 +137,7 @@ public class AccountantOrder {
                 ", totalPrice=" + totalPrice +
                 '}';
     }
+
 }
 
 

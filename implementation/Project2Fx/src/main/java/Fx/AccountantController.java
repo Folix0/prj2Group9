@@ -14,6 +14,7 @@ import restDao.AccountantOrderRestDao;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -157,20 +158,11 @@ public class AccountantController implements Initializable {
         res = Math.round(100.0 * res) / 100.0;
 
         price.setText("" + res);
+
+
     }
 
 
-    //inner class AlertHelper
-    public static class AlertHelper {
-        public static void showAlert(Alert.AlertType alertType, Window acc, String title, String message) {
-            Alert alert = new Alert(alertType);
-            alert.setTitle(title);
-            alert.setHeaderText(null);
-            alert.setContentText(message);
-            alert.initOwner(acc);
-            alert.show();
-        }
-    }
 
 
     //clear button
@@ -182,14 +174,19 @@ public class AccountantController implements Initializable {
         pricePerKilometer.setText("");
         price.clear();
         hazardous.setSelected(false);
-
-
-
-
-
     }
 
 
-    // Accountant order
+    //inner class AlertHelper
+    static class AlertHelper {
 
+        public static void showAlert(Alert.AlertType alertType, Window acc, String title, String message) {
+            Alert alert = new Alert(alertType);
+            alert.setTitle(title);
+            alert.setHeaderText(null);
+            alert.setContentText(message);
+            alert.initOwner(acc);
+            alert.show();
+        }
+    }
 }
