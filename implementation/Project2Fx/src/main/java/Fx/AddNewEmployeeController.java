@@ -1,13 +1,24 @@
 package Fx;
 
+import entities.CustomerOrder;
+import entities.Driver;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
+import restDao.DriverRestDao;
 
-public class AddNewEmployeeController {
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
 
-    ObservableList<String> employeeDepartment = FXCollections.observableArrayList("Driver","Planner", "Accountant");
+public class AddNewEmployeeController implements Initializable {
+
 
     @FXML
     public TextField firstName;
@@ -21,27 +32,40 @@ public class AddNewEmployeeController {
     public TextField phoneNumber;
     @FXML
     public TextField address;
+    @FXML
+    public CheckBox HazardousLicense;
+    @FXML
+    private Button add;
 
-    /*@FXML
-    private TableView employeeTable;
-    @FXML
-    private TableColumn<UserTestClass, Integer> empIdColumn;
-    @FXML
-    private TableColumn<UserTestClass, String>  empFirstNameColumn;
-    @FXML
-    private TableColumn<UserTestClass, String> empLastNameColumn;
-    @FXML
-    private TableColumn<UserTestClass, String> empEmailColumn;*/
-
-    //Choice box
 
     @FXML
-    private ChoiceBox department;
+    protected void Sending(ActionEvent e) {
 
-    @FXML
-    private void initialize(){
-        department.setValue("Driver");
-        department.setItems(employeeDepartment);
+        String fName = firstName.getText().trim();
+        String lName = lastName.getText().trim();
+        LocalDate birthDate = birthYear.getValue();
+        String email = this.email.getText().trim();
+        String phoneNumber = this.phoneNumber.getText().trim();
+        String address = this.address.getText().trim();
+        Boolean hazardous = this.HazardousLicense.isSelected();
+
+
+        Driver driver = new Driver(true, hazardous, fName, lName, birthDate, email, phoneNumber, address);
+
+        DriverRestDao driverRestDao = new DriverRestDao();
+
+        driverRestDao.save(driver);
+
+        System.out.println(driver);
+
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        add.setOnAction(this::Sending);
+        ObservableList<CustomerOrder> testController5 = FXCollections.observableArrayList();
+
 
     }
 }

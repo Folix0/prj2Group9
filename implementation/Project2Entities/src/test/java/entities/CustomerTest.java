@@ -1,4 +1,4 @@
-package entities;
+/*package entities;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -89,4 +89,4 @@ public class CustomerTest {
         assertThat(actual).isEqualTo("Customer{name='LK', email='LK@d', birthDate=2020-02-14, phoneNumber=123456, address='AStreet'}");
     }
 }
-
+        */

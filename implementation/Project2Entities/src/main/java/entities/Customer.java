@@ -1,71 +1,35 @@
 package entities;
 
 import java.time.LocalDate;
+/*
+public class Customer extends User{
 
-public class Customer {
+    private int id;
 
-    private String name;
-    private String email;
-    private  LocalDate birthDate;
-    private int phoneNumber;
-    private String address;
+    public Customer(){}
 
-    public Customer(String name, String email, LocalDate birthDate, int phoneNumber, String address) {
-        this.name = name;
-        this.email = email;
-        this.birthDate = birthDate;
-        this.phoneNumber = phoneNumber;
-        this.address = address;
+    public Customer(String firstName, String lastName, String email, LocalDate birthDate, String phoneNumber, String address) {
+        super(firstName, lastName,birthDate, email, phoneNumber, address);
     }
 
-    public String getName() {
-        return name;
+    public Customer(int id, String firstName, String lastName, String email, LocalDate birthDate, String phoneNumber, String address) {
+        super(firstName, lastName,birthDate, email, phoneNumber, address);
+        this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getId() {
+        return id;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public int getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
     public String toString() {
         return "Customer{" +
-                "name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", birthDate=" + birthDate +
-                ", phoneNumber=" + phoneNumber +
-                ", address='" + address + '\'' +
+                "id=" + id +
                 '}';
     }
-}
+}*/
+

@@ -1,4 +1,4 @@
-package entities;
+/*package entities;
 
 import org.junit.Before;
 
@@ -10,4 +10,4 @@ public class AccountantOrderTest {
     public void setUp() throws Exception {
 
     }
-}
+}*/

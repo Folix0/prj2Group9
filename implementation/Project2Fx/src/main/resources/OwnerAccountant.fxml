@@ -39,22 +39,8 @@
                           </rowConstraints>
                         </GridPane>
                         <Label layoutX="14.0" layoutY="12.0" text="ORDER INFORMATION" textFill="WHITE" AnchorPane.topAnchor="10.0" />
-                        <TableView layoutX="1.0" layoutY="33.0" prefHeight="219.0" prefWidth="1100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0">
-                          <columns>
-                              <TableColumn prefWidth="75.0" text="Order ID" />
-                            <TableColumn prefWidth="83.20001220703125" text="Customer ID" />
-                              <TableColumn prefWidth="149.5999755859375" text=" Email" />
-                              <TableColumn prefWidth="110.0" text="Pickup Location" />
-                              <TableColumn prefWidth="170.4000244140625" text="Destination Address" />
-                              <TableColumn prefWidth="130.4000244140625" text="Destination Postcode" />
-                              <TableColumn prefWidth="97.5999755859375" text="Amount (tons)" />
-                              <TableColumn prefWidth="110.0" text="Delivery Date" />
-                              <TableColumn prefWidth="110.0" text="Hazardous" />
-                              <TableColumn prefWidth="110.0" />
-                          </columns>
-                        </TableView>
                         <Label layoutX="756.0" layoutY="318.0" text="Kilometers" textFill="WHITE" />
-                        <GridPane hgap="15.0" layoutX="33.0" layoutY="293.0" prefHeight="215.0" prefWidth="290.0" vgap="7.0">
+                        <GridPane hgap="15.0" layoutX="33.0" layoutY="293.0" prefHeight="200.0" prefWidth="300.0" vgap="7.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="170.0" />
@@ -62,21 +48,19 @@
                           <rowConstraints>
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label text="Customer ID" textFill="WHITE" GridPane.rowIndex="1" />
-                              <Label text="Email" textFill="WHITE" GridPane.rowIndex="2" />
-                              <Label text="Amount" textFill="WHITE" GridPane.rowIndex="3" />
-                              <Label text="Delivery Date" textFill="WHITE" GridPane.rowIndex="4" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Label text="Email" textFill="WHITE" GridPane.rowIndex="1" />
+                              <Label text="Amount" textFill="WHITE" GridPane.rowIndex="2" />
+                              <Label text="Delivery Date" textFill="WHITE" GridPane.rowIndex="3" />
+                              <TextField fx:id="mail" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="amount1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="deliveryDate1" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <Label text="Order ID" textFill="WHITE" />
-                              <TextField GridPane.columnIndex="1" />
+                              <TextField fx:id="id" GridPane.columnIndex="1" />
                            </children>
                         </GridPane>
                         <Separator id="s" layoutX="703.0" layoutY="265.0" orientation="VERTICAL" prefHeight="297.0" prefWidth="18.0" styleClass="s" stylesheets="@Stylesheet.css" />
@@ -84,7 +68,7 @@
                         <TextField fx:id="kilometers" layoutX="896.0" layoutY="314.0" prefHeight="26.0" prefWidth="175.0" />
                         <TextField fx:id="pricePerKilometer" layoutX="895.0" layoutY="357.0" prefHeight="26.0" prefWidth="175.0" />
                         <Label layoutX="755.0" layoutY="362.0" text="Price per Kilometer" textFill="WHITE" />
-                        <CheckBox fx:id="hazardous" layoutX="896.0" layoutY="400.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="84.0" text="Hazardous" textFill="WHITE" />
+                        <CheckBox fx:id="isHazardous2" layoutX="896.0" layoutY="400.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="84.0" text="Hazardous" textFill="WHITE" />
                         <Button id="dd" fx:id="calculateBtn" layoutX="988.0" layoutY="507.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="82.0" styleClass="dd" stylesheets="@Stylesheet.css" text="CALCULATE" textFill="WHITE" />
                         <GridPane hgap="15.0" layoutX="372.0" layoutY="288.0" prefHeight="200.0" prefWidth="300.0" vgap="7.0">
                           <columnConstraints>
@@ -101,22 +85,37 @@
                            <children>
                               <Label text="Destination Address" textFill="WHITE" />
                               <Label text="Total Price" textFill="WHITE" GridPane.rowIndex="3" />
-                              <TextField GridPane.columnIndex="1" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="destinationAddress1" GridPane.columnIndex="1" />
+                              <TextField fx:id="totalPrice" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <Label text="Hazardous Liquid" textFill="WHITE" GridPane.rowIndex="4" />
-                              <CheckBox mnemonicParsing="false" text="Hazardous" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <CheckBox fx:id="isHazardous1" mnemonicParsing="false" text="Hazardous" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                               <Label text="Pickup Location" textFill="WHITE" GridPane.rowIndex="2" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="pickUpLocation1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <Label text="Destination Postcode" textFill="WHITE" GridPane.rowIndex="1" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="destinationPostCode1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
                         <TextArea fx:id="price" layoutX="896.0" layoutY="433.0" prefHeight="4.0" prefWidth="175.0" style="-fx-background-radius: 0;" />
                         <Label layoutX="755.0" layoutY="443.0" text="Total Price" textFill="WHITE" />
-                        <Button id="dd" layoutX="589.0" layoutY="507.0" mnemonicParsing="false" prefWidth="82.0" styleClass="dd" stylesheets="@Stylesheet.css" text="SEND" textFill="WHITE" />
+                        <Button id="dd" fx:id="sendbtn" layoutX="589.0" layoutY="507.0" mnemonicParsing="false" onAction="#handleSendButton" prefWidth="82.0" styleClass="dd" stylesheets="@Stylesheet.css" text="SEND" textFill="WHITE" />
                         <Separator id="s" layoutX="755.0" layoutY="290.0" prefHeight="2.0" prefWidth="351.0" styleClass="s" stylesheets="@Stylesheet.css" />
                         <Label layoutX="755.0" layoutY="400.0" text="Hazardous Liquid" textFill="WHITE" />
                         <Button id="dd" fx:id="clearBtn" layoutX="897.0" layoutY="507.0" mnemonicParsing="false" onAction="#handleClearButtonEvent" prefHeight="26.0" prefWidth="82.0" styleClass="dd" stylesheets="@Stylesheet.css" text="CLEAR" textFill="WHITE" />
+                        <Button id="dd" layoutX="497.0" layoutY="507.0" mnemonicParsing="false" prefWidth="82.0" styleClass="dd" stylesheets="@Stylesheet.css" text="REJECT" textFill="WHITE" />
+                        <TableView fx:id="table" layoutX="1.0" layoutY="33.0" prefHeight="219.0" prefWidth="1100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0">
+                          <columns>
+                              <TableColumn fx:id="orderId" prefWidth="87.19997864961624" text="Order ID" />
+                              <TableColumn fx:id="email" prefWidth="137.60003662109375" text=" Email" />
+                              <TableColumn fx:id="pickUpLocation" prefWidth="110.0" text="Pickup Location" />
+                              <TableColumn fx:id="destinationAddress" prefWidth="170.4000244140625" text="Destination Address" />
+                              <TableColumn fx:id="destinationPostCode" prefWidth="130.4000244140625" text="Destination Postcode" />
+                              <TableColumn fx:id="amount" prefWidth="97.5999755859375" text="Amount" />
+                              <TableColumn fx:id="deliveryDate" minWidth="0.0" prefWidth="107.199951171875" text="Delivery Date" />
+                              <TableColumn fx:id="isHazardous" prefWidth="113.60009765625" text="Hazardous" />
+                              <TableColumn prefWidth="110.0" text="Status" />
+                              <TableColumn prefWidth="110.0" />
+                          </columns>
+                        </TableView>
                      </children>
                   </AnchorPane>
                </content>
@@ -146,7 +145,7 @@
                         <Label layoutX="17.0" layoutY="292.0" text="DELIVERY INFORMATION" textFill="WHITE" />
                         <Label layoutX="17.0" layoutY="13.0" text="CUSTOMER INFORMATION" textFill="WHITE" AnchorPane.topAnchor="10.0" />
                         <Separator id="s" layoutX="582.0" layoutY="7.0" orientation="VERTICAL" prefHeight="558.0" prefWidth="12.0" styleClass="s" stylesheets="@Stylesheet.css" />
-                        <Label layoutX="802.0" layoutY="13.0" text="CREATE INVOICE" textFill="WHITE" />
+                        <Label layoutX="802.0" layoutY="13.0" text="CREATE &amp; SEND INVOICE" textFill="WHITE" />
                         <GridPane hgap="15.0" layoutX="633.0" layoutY="69.0" prefHeight="300.0" prefWidth="420.0" vgap="15.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="184.20001220703125" minWidth="10.0" prefWidth="130.399951171875" />
@@ -159,72 +158,56 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
                               <Label text="Customer ID" textFill="WHITE" GridPane.rowIndex="1" />
-                              <Label text="Hazardous Liquid" textFill="WHITE" GridPane.rowIndex="2" />
-                              <Label text="Amount" textFill="WHITE" GridPane.rowIndex="3" />
-                              <Label text="Delivery Date" textFill="WHITE" GridPane.rowIndex="4" />
-                              <Label text="Total Price" textFill="WHITE" GridPane.rowIndex="5" />
+                              <Label text="Hazardous Liquid" textFill="WHITE" GridPane.rowIndex="3" />
+                              <Label text="Amount" textFill="WHITE" GridPane.rowIndex="4" />
+                              <Label text="Delivery Date" textFill="WHITE" GridPane.rowIndex="5" />
+                              <Label text="Total Price" textFill="WHITE" GridPane.rowIndex="6" />
                               <TextField prefWidth="261.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <TextField prefWidth="252.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <DatePicker prefHeight="26.0" prefWidth="267.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField prefWidth="252.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <DatePicker prefHeight="26.0" prefWidth="267.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                               <Label text="Order Id" textFill="WHITE" />
                               <TextField prefWidth="261.0" GridPane.columnIndex="1" />
-                              <CheckBox mnemonicParsing="false" text="Hazardous" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                           </children>
-                        </GridPane>
-                        <Label layoutX="801.0" layoutY="404.0" text="SEND INVOICE" textFill="WHITE" />
-                        <GridPane hgap="15.0" layoutX="635.0" layoutY="452.0" prefHeight="65.0" prefWidth="420.0" vgap="20.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="213.39996337890625" minWidth="10.0" prefWidth="167.99996337890624" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="304.60003662109375" minWidth="10.0" prefWidth="270.4000366210937" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <Label prefHeight="17.0" prefWidth="87.0" text="Email Address" textFill="WHITE" />
-                              <TextField prefHeight="26.0" prefWidth="240.0" GridPane.columnIndex="1" />
-                              <Button id="dd" mnemonicParsing="false" prefHeight="26.0" prefWidth="90.0" styleClass="dd" stylesheets="@Stylesheet.css" text="SEND" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                 <GridPane.margin>
-                                    <Insets left="171.0" />
-                                 </GridPane.margin>
-                              </Button>
+                              <CheckBox mnemonicParsing="false" text="Hazardous" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label text="Email" textFill="WHITE" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
                         <Separator id="s" layoutX="801.0" layoutY="32.0" prefHeight="6.0" prefWidth="302.0" styleClass="s" stylesheets="@Stylesheet.css" />
-                        <Separator id="s" layoutX="800.0" layoutY="424.0" prefHeight="6.0" prefWidth="299.0" styleClass="s" stylesheets="@Stylesheet.css" />
+                        <Button id="dd" layoutX="962.0" layoutY="434.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="90.0" styleClass="dd" stylesheets="@Stylesheet.css" text="SEND" textFill="WHITE" />
                      </children>
                   </AnchorPane>
                </content>
             </Tab>
           <Tab text="ORDERS">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="554.0" prefWidth="1950.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="554.0" prefWidth="1235.0">
                      <children>
-                        <TableView fx:id="table" layoutX="14.0" layoutY="31.0" prefHeight="528.0" prefWidth="1100.0" stylesheets="@Stylesheet.css" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0">
+                        <TableView layoutX="14.0" layoutY="31.0" prefHeight="466.0" prefWidth="1100.0" stylesheets="@Stylesheet.css" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0">
                           <columns>
-                            <TableColumn fx:id="orderid" prefWidth="110.0" text="Order Id" />
-                            <TableColumn fx:id="customerid" prefWidth="110.0" text="Customer ID" />
-                              <TableColumn fx:id="customerid2" prefWidth="110.0" text="Email" />
-                              <TableColumn fx:id="customerid1" prefWidth="110.0" text="Driver ID" />
-                              <TableColumn fx:id="customerid11" prefWidth="110.0" text="Trailer ID" />
-                              <TableColumn fx:id="hazardousT1" prefWidth="78.93341064453125" text="Truck ID" />
-                              <TableColumn fx:id="amount1" prefWidth="148.7999267578125" text="Trailer Pickup Location" />
-                              <TableColumn fx:id="amount11" prefWidth="128.0" text="Load Location" />
-                              <TableColumn fx:id="amount" prefWidth="91.9998779296875" text="Load Amount" />
-                              <TableColumn fx:id="hazardousT" prefWidth="78.93341064453125" text="Hazardous" />
-                              <TableColumn fx:id="desAddress" prefWidth="147.2000732421875" text="Destination Address" />
-                              <TableColumn fx:id="desPostCode" prefWidth="128.80007934570312" text="Destination Postcode" />
-                              <TableColumn fx:id="deliverydate" prefWidth="105.333251953125" text="Delivery Date" />
+                            <TableColumn prefWidth="110.0" text="Order Id" />
+                            <TableColumn prefWidth="110.0" text="Customer ID" />
+                              <TableColumn prefWidth="110.0" text="Email" />
+                              <TableColumn prefWidth="110.0" text="Driver ID" />
+                              <TableColumn prefWidth="110.0" text="Trailer ID" />
+                              <TableColumn prefWidth="78.93341064453125" text="Truck ID" />
+                              <TableColumn prefWidth="148.7999267578125" text="Trailer Pickup Location" />
+                              <TableColumn prefWidth="128.0" text="Load Location" />
+                              <TableColumn prefWidth="91.9998779296875" text="Load Amount" />
+                              <TableColumn prefWidth="78.93341064453125" text="Hazardous" />
+                              <TableColumn prefWidth="147.2000732421875" text="Destination Address" />
+                              <TableColumn prefWidth="128.80007934570312" text="Destination Postcode" />
+                              <TableColumn prefWidth="105.333251953125" text="Delivery Date" />
                               <TableColumn prefWidth="120.0" text="Status" />
-                              <TableColumn fx:id="deliverydate1" prefWidth="105.333251953125" text="Total Price" />
+                              <TableColumn prefWidth="105.333251953125" text="Total Price" />
                           </columns>
                         </TableView>
                         <Label layoutX="12.0" layoutY="11.0" text="ORDER INFORMATION" textFill="WHITE" AnchorPane.topAnchor="10.0" />
+                        <Button id="dd" layoutX="995.0" layoutY="512.0" mnemonicParsing="false" prefWidth="82.0" styleClass="dd" stylesheets="@Stylesheet.css" text="CANCEL" textFill="WHITE" />
                      </children>
                   </AnchorPane>
             </content>

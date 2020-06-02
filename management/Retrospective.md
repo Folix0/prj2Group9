@@ -14,8 +14,8 @@ A team and its members can only improve if they analyzed what went well and what
 
 ### 2. What needs improvement?
 - more self-initivate, motivation of some group members -> search tasks independently and work on them continously without invitation
-- work together on some difficult things 
-- more agile working: implement one funcitonality completely: implement database connection, business logic, tests, ... 
+- work together on difficult tasks that need group participation. 
+- more agile style of work: implement one funcitonality completely: implement database connection, business logic, tests, ... 
 
 
 

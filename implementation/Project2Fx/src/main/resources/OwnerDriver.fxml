@@ -37,9 +37,9 @@
                      <children>
                         <TableView layoutX="52.0" layoutY="72.0" prefHeight="543.2" prefWidth="900.0" stylesheets="@Stylesheet.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
-                            <TableColumn prefWidth="110.0" text="Truck Id" />
-                            <TableColumn prefWidth="110.0" text="Trailer Id" />
-                              <TableColumn prefWidth="214.1333770751953" text="Trailer Pickup Location" />
+                            <TableColumn prefWidth="135.2000488281251" text="Truck License Plate" />
+                            <TableColumn prefWidth="130.39996337890625" text="Trailer License Plate" />
+                              <TableColumn prefWidth="169.60003662109375" text="Trailer Pickup Location" />
                               <TableColumn minWidth="2.39996337890625" prefWidth="92.7999267578125" text="Type" />
                               <TableColumn minWidth="2.39996337890625" prefWidth="162.39990234375" text="Load Location" />
                               <TableColumn minWidth="2.39996337890625" prefWidth="117.60009765625" text="Load Amount" />

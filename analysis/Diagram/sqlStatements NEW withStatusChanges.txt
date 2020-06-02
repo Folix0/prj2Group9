@@ -1,0 +1,70 @@
+INSERT STUFF
+
+
+
+CREATE TABLE Accountant (ID int4 NOT NULL, firstName varchar(255) NOT NULL, lastName varchar(255) NOT NULL, birthDate date NOT NULL, email varchar(255) NOT NULL, phoneNumber varchar(255) NOT NULL, address varchar(255) NOT NULL, PRIMARY KEY (ID));
+CREATE TABLE Customer (ID int4 NOT NULL, firstName varchar(255) NOT NULL, lastName varchar(255) NOT NULL, birthDate date NOT NULL, email varchar(255) NOT NULL, phoneNumber varchar(255) NOT NULL, address varchar(255) NOT NULL, PRIMARY KEY (ID));
+CREATE TABLE Customer_Order (CustomerID int4 NOT NULL, OrderID int4 NOT NULL, PRIMARY KEY (CustomerID, OrderID));
+CREATE TABLE DeliveryTour (ID SERIAL NOT NULL, startOfDeliveryDate date NOT NULL, finishOfDeliveryDate date NOT NULL, AccountantID int4 NOT NULL, DriverID int4 NOT NULL, PRIMARY KEY (ID));
+CREATE TABLE Driver (ID int4 NOT NULL, firstName varchar(255) NOT NULL, lastName varchar(255) NOT NULL, birthDate date NOT NULL, email varchar(255) NOT NULL, phoneNumber varchar(255) NOT NULL, address varchar(255) NOT NULL, isAvailable bool NOT NULL, hasHazardousLicense bool NOT NULL, PRIMARY KEY (ID));
+CREATE TABLE Invoice (ID SERIAL NOT NULL, AccountantID int4 NOT NULL, CustomerID int4 NOT NULL, PRIMARY KEY (ID));
+CREATE TABLE "Order" (ID SERIAL NOT NULL, orderAmount float8 NOT NULL, destinationAddress varchar(255) NOT NULL, destinationPostcode varchar(255) NOT NULL, pickupAddress varchar(255) NOT NULL, deliveryDate date NOT NULL, isHazardous bool NOT NULL, totalPrice float8, orderStatus varchar(255) NOT NULL, AccountantID int4 NOT NULL, CustomerID int4 NOT NULL, InvoiceID int4 NOT NULL, PlannerID int4 NOT NULL, PRIMARY KEY (ID));
+CREATE TABLE Planner (ID int4 NOT NULL, firstName varchar(255) NOT NULL, lastName varchar(255) NOT NULL, birthDate date NOT NULL, email varchar(255) NOT NULL, phoneNumber varchar(255) NOT NULL, address varchar(255) NOT NULL, PRIMARY KEY (ID));
+CREATE TABLE Trailer (ID SERIAL NOT NULL, trailerLicencePlate varchar(255) NOT NULL, trailerPickupLocation varchar(255) NOT NULL, capacity float8 NOT NULL, trailerWeight float8 NOT NULL, isCleaned bool NOT NULL, isAvailable bool NOT NULL, isHazardous bool NOT NULL, maintenanceCheckdate date NOT NULL, PRIMARY KEY (ID));
+CREATE TABLE Truck (ID SERIAL NOT NULL, truckLicencePlate varchar(255) NOT NULL, truckPickupLocation varchar(255) NOT NULL, truckWeight float8 NOT NULL, mileage int4 NOT NULL, isAvailable bool NOT NULL, maintenanceCheckdate date NOT NULL, PRIMARY KEY (ID));
+CREATE TABLE WorkOrderPlan (ID SERIAL NOT NULL, wOrderStatus varchar(255) NOT NULL, PlannerID int4 NOT NULL, TruckID int4 NOT NULL, TrailerID int4 NOT NULL, DeliveryTourID int4 NOT NULL, OrderID int4 NOT NULL, DriverID int4 NOT NULL, PRIMARY KEY (ID));
+ALTER TABLE WorkOrderPlan ADD CONSTRAINT FKWorkOrderP11849 FOREIGN KEY (TruckID) REFERENCES Truck (ID);
+ALTER TABLE WorkOrderPlan ADD CONSTRAINT FKWorkOrderP338206 FOREIGN KEY (TrailerID) REFERENCES Trailer (ID);
+ALTER TABLE WorkOrderPlan ADD CONSTRAINT FKWorkOrderP402904 FOREIGN KEY (DeliveryTourID) REFERENCES DeliveryTour (ID);
+ALTER TABLE "Order" ADD CONSTRAINT FKOrder134347 FOREIGN KEY (InvoiceID) REFERENCES Invoice (ID);
+ALTER TABLE WorkOrderPlan ADD CONSTRAINT FKWorkOrderP908057 FOREIGN KEY (PlannerID) REFERENCES Planner (ID);
+ALTER TABLE "Order" ADD CONSTRAINT FKOrder955410 FOREIGN KEY (AccountantID) REFERENCES Accountant (ID);
+ALTER TABLE "Order" ADD CONSTRAINT FKOrder168056 FOREIGN KEY (PlannerID) REFERENCES Planner (ID);
+ALTER TABLE DeliveryTour ADD CONSTRAINT FKDeliveryTo128499 FOREIGN KEY (AccountantID) REFERENCES Accountant (ID);
+ALTER TABLE WorkOrderPlan ADD CONSTRAINT FKWorkOrderP193156 FOREIGN KEY (OrderID) REFERENCES "Order" (ID);
+ALTER TABLE Invoice ADD CONSTRAINT FKInvoice446696 FOREIGN KEY (AccountantID) REFERENCES Accountant (ID);
+ALTER TABLE WorkOrderPlan ADD CONSTRAINT FKWorkOrderP85491 FOREIGN KEY (DriverID) REFERENCES Driver (ID);
+ALTER TABLE Invoice ADD CONSTRAINT FKInvoice987227 FOREIGN KEY (CustomerID) REFERENCES Customer (ID);
+ALTER TABLE Customer_Order ADD CONSTRAINT FKCustomer_O878173 FOREIGN KEY (CustomerID) REFERENCES Customer (ID);
+ALTER TABLE Customer_Order ADD CONSTRAINT FKCustomer_O989859 FOREIGN KEY (OrderID) REFERENCES "Order" (ID);
+ALTER TABLE DeliveryTour ADD CONSTRAINT FKDeliveryTo998580 FOREIGN KEY (DriverID) REFERENCES Driver (ID);
+ALTER TABLE "Order" ADD CONSTRAINT FKOrder556711 FOREIGN KEY (CustomerID) REFERENCES Customer (ID);
+
+
+
+
+
+
+--------------------------------------------------------------
+DROP TABLE
+
+
+
+
+ALTER TABLE WorkOrderPlan DROP CONSTRAINT FKWorkOrderP11849;
+ALTER TABLE WorkOrderPlan DROP CONSTRAINT FKWorkOrderP338206;
+ALTER TABLE WorkOrderPlan DROP CONSTRAINT FKWorkOrderP402904;
+ALTER TABLE "Order" DROP CONSTRAINT FKOrder134347;
+ALTER TABLE WorkOrderPlan DROP CONSTRAINT FKWorkOrderP908057;
+ALTER TABLE "Order" DROP CONSTRAINT FKOrder955410;
+ALTER TABLE "Order" DROP CONSTRAINT FKOrder168056;
+ALTER TABLE DeliveryTour DROP CONSTRAINT FKDeliveryTo128499;
+ALTER TABLE WorkOrderPlan DROP CONSTRAINT FKWorkOrderP193156;
+ALTER TABLE Invoice DROP CONSTRAINT FKInvoice446696;
+ALTER TABLE WorkOrderPlan DROP CONSTRAINT FKWorkOrderP85491;
+ALTER TABLE Invoice DROP CONSTRAINT FKInvoice987227;
+ALTER TABLE Customer_Order DROP CONSTRAINT FKCustomer_O878173;
+ALTER TABLE Customer_Order DROP CONSTRAINT FKCustomer_O989859;
+ALTER TABLE DeliveryTour DROP CONSTRAINT FKDeliveryTo998580;
+ALTER TABLE "Order" DROP CONSTRAINT FKOrder556711;
+DROP TABLE IF EXISTS Accountant CASCADE;
+DROP TABLE IF EXISTS Customer CASCADE;
+DROP TABLE IF EXISTS Customer_Order CASCADE;
+DROP TABLE IF EXISTS DeliveryTour CASCADE;
+DROP TABLE IF EXISTS Driver CASCADE;
+DROP TABLE IF EXISTS Invoice CASCADE;
+DROP TABLE IF EXISTS "Order" CASCADE;
+DROP TABLE IF EXISTS Planner CASCADE;
+DROP TABLE IF EXISTS Trailer CASCADE;
+DROP TABLE IF EXISTS Truck CASCADE;
+DROP TABLE IF EXISTS WorkOrderPlan CASCADE;

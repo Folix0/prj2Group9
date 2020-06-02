@@ -8,7 +8,7 @@
    <bottom>
       <AnchorPane prefHeight="60.0" prefWidth="1100.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
          <children>
-            <Button id="dbutton" alignment="CENTER" layoutX="804.0" layoutY="7.0" mnemonicParsing="false" onAction="#addButton" prefHeight="54.0" prefWidth="150.0" styleClass="dbutton" stylesheets="@Stylesheet.css" text="ADD EMPLOYEE" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="804.0" AnchorPane.rightAnchor="151.19999999999993" AnchorPane.topAnchor="7.0" />
+            <Button id="dbutton" alignment="CENTER" layoutX="804.0" layoutY="7.0" mnemonicParsing="false" onAction="#addButton" prefHeight="54.0" prefWidth="150.0" styleClass="dbutton" stylesheets="@Stylesheet.css" text="ADD DRIVER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="804.0" AnchorPane.rightAnchor="151.19999999999993" AnchorPane.topAnchor="7.0" />
             <Button id="dbutton" alignment="CENTER" layoutX="954.0" layoutY="6.0" mnemonicParsing="false" onAction="#goBack" prefHeight="54.0" prefWidth="150.0" styleClass="dbutton" stylesheets="@Stylesheet.css" text="BACK" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
             <Button id="dbutton" alignment="CENTER" layoutY="7.0" mnemonicParsing="false" onAction="#goCustomer" prefHeight="54.0" prefWidth="150.0" styleClass="dbutton" stylesheets="@Stylesheet.css" text="CUSTOMER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="954.4" />
          </children>

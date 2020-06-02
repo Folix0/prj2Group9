@@ -22,15 +22,3 @@ public interface DAOlite<T, I> {
     void delete(T t);
 }
 
-/*
-public interface DAOlite<T> {
-    T save(T e);
-
-    Optional<T> get(int id);
-
-    List<T> getAll();
-
-    void update(T e);
-
-    void delete(T t);
-}*/

@@ -1,50 +1,35 @@
 package restDao;
 
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonObject;
 import entities.AccountantOrder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import org.apache.http.Consts;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import javax.json.Json;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.ext.WriterInterceptorContext;
 import java.io.*;
-import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.Charset;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.*;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Optional;
 
 public class AccountantOrderRestDao implements DAOlite<AccountantOrder> {
 
 
-    private static final String API_URL = "http://localhost:8080/webapi/myresource/accountantorder/1";
+    private static final String GET_ALL_URL = "http://localhost:8080/webapi/myresource/accountantorder";
+    private static final String GET_URL = "http://localhost:8080/webapi/myresource/accountantorder/";
 
     private static JSONObject getObjectFromWebsite(final String url) throws IOException {
         final InputStream inputStream = new URL(url).openStream();
@@ -61,99 +46,6 @@ public class AccountantOrderRestDao implements DAOlite<AccountantOrder> {
             inputStream.close();
 
         }
-
-    }
-
-
-    @POST
-    @Path("accountantorder")
-    @Override
-    public void save(AccountantOrder e) {
-        CloseableHttpClient client = HttpClients.createDefault();
-        HttpPost httpPost = new HttpPost("http://www.example.com");
-
-
-        httpPost.setHeader("Accept", "application/json");
-        httpPost.setHeader("Content-type", "application/json");
-
-        CloseableHttpResponse response = null;
-        try {
-            response = client.execute(httpPost);
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
-        }
-
-        try {
-            client.close();
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
-        }
-    }
-
-    @Override
-    public AccountantOrder get(int id) throws Exception {
-        Collection<AccountantOrder> a = getAll();
-        AccountantOrder accountant = null;
-
-        for(AccountantOrder acc : a){
-            if(acc.getOrderId() == id){
-                accountant = acc;
-            }
-        }
-
-        return accountant;
-    }
-
-    @Override
-    public Collection<AccountantOrder> getAll() throws Exception {
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .GET()
-                .header("accept", "application/json")
-                .uri(URI.create(API_URL))
-                .build();
-
-        HttpResponse<String> response = null;
-        try {
-            response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        JSONArray jsonArray = new JSONArray(response.body());
-        ObservableList<AccountantOrder> list = FXCollections.observableArrayList();
-
-        for (Object o : jsonArray) {
-            JSONObject a = (JSONObject) o;
-
-            int orderId = a.getInt("orderId");
-            int customerId = a.getInt("customerId");
-            double amount = a.getDouble("amount");
-            String destinationAddress = a.getString("destinationAddress");
-            int postCode = a.getInt("destinationPostcode");
-            String pickUpAddress = a.getString("pickupAddress");
-            LocalDate deliveryDate = LocalDate.parse(a.getString("deliveryDate"));
-            boolean hazardous = a.getBoolean("hazardous");
-            String email = a.getString("email");
-            double totalPrice = a.getDouble("totalPrice");
-
-
-            AccountantOrder acc = new AccountantOrder(orderId,customerId, amount, destinationAddress, postCode,
-                    pickUpAddress, deliveryDate, hazardous, email, totalPrice);
-
-            list.add(acc);
-
-        }
-        return list;
-    }
-
-    @Override
-    public AccountantOrder update(AccountantOrder e) {
-        return null;
-    }
-
-    @Override
-    public void delete(int id) {
 
     }
 
@@ -174,6 +66,165 @@ public class AccountantOrderRestDao implements DAOlite<AccountantOrder> {
     }
 
     public static void main(String[] args) throws Exception {
+        AccountantOrder a = new AccountantOrder(3, 3, 3000.00, "Street123", 123456,
+                "Pickup123", LocalDate.parse("2002-12-12"), true, "D@test", 250.00);
+
+        AccountantOrderRestDao ar = new AccountantOrderRestDao();
+        System.out.println(ar.get(1));
+
+
+    }
+
+    @POST
+    @Path("accountantorder")
+    @Override
+    public void save(AccountantOrder accountantOrder) {
+
+        var values = new HashMap<String, String>() {{
+            put("orderId", "" + accountantOrder.getOrderId());
+            put("customerId", "" + accountantOrder.getCustomerId());
+            put("amount", "" + accountantOrder.getAmount());
+            put("destinationAddress", "" + accountantOrder.getDestinationAddress());
+            put("destinationPostcode", "" + accountantOrder.getDestinationPostcode());
+            put("pickupAddress", "" + accountantOrder.getPickupAddress());
+            put("deliveryDate", "" + accountantOrder.getDeliveryDate());
+            put("hazardous", "" + accountantOrder.isHazardous());
+            put("email", "" + accountantOrder.getEmail());
+            put("totalPrice", "" + accountantOrder.getTotalPrice());
+        }};
+
+        for (String x : values.keySet()) {
+            System.out.println(x);
+            System.out.println(values.get(x));
+
+        }
+
+        var objectMapper = new ObjectMapper();
+        String requestBody = null;
+        try {
+            requestBody = objectMapper
+                    .writeValueAsString(values);
+        } catch (JsonProcessingException jsonProcessingException) {
+            jsonProcessingException.printStackTrace();
+        }
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .header("Content-Type", "application/json")
+                .uri(URI.create("http://localhost:8080/webapi/myresource/accountantorder"))
+                .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+                .build();
+
+        HttpResponse<String> response = null;
+        try {
+            response = client.send(request,
+                    HttpResponse.BodyHandlers.ofString());
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        } catch (InterruptedException interruptedException) {
+            interruptedException.printStackTrace();
+        }
+
+        System.out.println(response.body());
+    }
+
+    @Override
+    public Optional<AccountantOrder> get(int id) {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .GET()
+                .header("accept", "application/json")
+                .uri(URI.create(GET_URL + id))
+                .build();
+
+        HttpResponse<String> response = null;
+        try {
+
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            JSONObject jsonObject = new JSONObject(response.body());
+
+
+            int orderId = jsonObject.getInt("orderId");
+            int customerId = jsonObject.getInt("customerId");
+            double amount = jsonObject.getDouble("amount");
+            String destinationAddress = jsonObject.getString("destinationAddress");
+            int postCode = jsonObject.getInt("destinationPostcode");
+            String pickUpAddress = jsonObject.getString("pickupAddress");
+            LocalDate deliveryDate = LocalDate.parse(jsonObject.getString("deliveryDate"));
+            boolean hazardous = jsonObject.getBoolean("hazardous");
+            String email = jsonObject.getString("email");
+            double totalPrice = jsonObject.getDouble("totalPrice");
+
+
+            AccountantOrder accountantOrder = new AccountantOrder(orderId, customerId, amount, destinationAddress, postCode,
+                    pickUpAddress, deliveryDate, hazardous, email, totalPrice);
+
+            return Optional.of(accountantOrder);
+
+
+        } catch (InterruptedException | IOException ioException) {
+            ioException.printStackTrace();
+            return Optional.empty();
+        }
+
+
+    }
+
+    @Override
+    public Optional<Collection<AccountantOrder>> getAll() {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .GET()
+                .header("accept", "application/json")
+                .uri(URI.create(GET_ALL_URL))
+                .build();
+
+        HttpResponse<String> response = null;
+        try {
+
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            JSONArray jsonArray = new JSONArray(response.body());
+            ObservableList<AccountantOrder> list = FXCollections.observableArrayList();
+
+            for (Object o : jsonArray) {
+                JSONObject jsonObject = (JSONObject) o;
+
+                int orderId = jsonObject.getInt("orderId");
+                int customerId = jsonObject.getInt("customerId");
+                double amount = jsonObject.getDouble("amount");
+                String destinationAddress = jsonObject.getString("destinationAddress");
+                int postCode = jsonObject.getInt("destinationPostcode");
+                String pickUpAddress = jsonObject.getString("pickupAddress");
+                LocalDate deliveryDate = LocalDate.parse(jsonObject.getString("deliveryDate"));
+                boolean hazardous = jsonObject.getBoolean("hazardous");
+                String email = jsonObject.getString("email");
+                double totalPrice = jsonObject.getDouble("totalPrice");
+
+
+                AccountantOrder accountantOrder = new AccountantOrder(orderId, customerId, amount, destinationAddress, postCode,
+                        pickUpAddress, deliveryDate, hazardous, email, totalPrice);
+
+                list.add(accountantOrder);
+
+            }
+            return Optional.of(list);
+
+        } catch (InterruptedException | IOException ioException) {
+            ioException.printStackTrace();
+            return Optional.empty();
+        }
+
+    }
+
+    @Override
+    public AccountantOrder update(AccountantOrder accountantOrder) {
+        return null;
+    }
+
+    @Override
+    public void delete(int id) {
 
     }
 }

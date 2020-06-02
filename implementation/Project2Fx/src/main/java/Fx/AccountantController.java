@@ -1,32 +1,61 @@
 package Fx;
 
 
-import entities.AccountantOrder;
+import entities.CustomerOrder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import javafx.stage.Window;
-import restDao.AccountantOrderRestDao;
+import restDao.CustomerOrderRestDao;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class AccountantController implements Initializable {
 
+
+    @FXML
+    private TextField id;
+    @FXML
+    private TextField amount1;
+    @FXML
+    private TextField mail;
+    @FXML
+    private TextField deliveryDate1;
+    @FXML
+    private TextField destinationAddress1;
+    @FXML
+    private TextField destinationPostCode1;
+    @FXML
+    private TextField pickUpLocation1;
+    @FXML
+    private TextField totalPrice;
+    @FXML
+    private CheckBox isHazardous1;
+    @FXML
+    private CheckBox isHazardous2;
+    @FXML
+    private Button sendbtn;
+
+
+    // Calculator
     @FXML
     private TextField kilometers;
     @FXML
     private TextField pricePerKilometer;
-    @FXML
-    private CheckBox hazardous;
     @FXML
     private Button calculateBtn;
     @FXML
@@ -35,89 +64,144 @@ public class AccountantController implements Initializable {
     private Button clearBtn;
 
 
-
-    @FXML
-    private TableColumn<AccountantOrder, Integer> orderid;
-    @FXML
-    private TableColumn<AccountantOrder, Integer> customerid;
-    @FXML
-    private TableColumn<AccountantOrder, Double> amount;
-    @FXML
-    private TableColumn<AccountantOrder, String> desAddress;
-    @FXML
-    private TableColumn<AccountantOrder, Integer> desPostCode;
-    @FXML
-    private TableColumn<AccountantOrder, String> pickupAdd;
-    @FXML
-    private TableColumn<AccountantOrder, LocalDate> deliverydate;
-    @FXML
-    private TableColumn<AccountantOrder, Boolean> hazardousT;
-    @FXML
-    private TableColumn<AccountantOrder, String> email;
+    //Table name
     @FXML
     private TableView table;
+    @FXML
+    private TableColumn<CustomerOrder, Integer> orderId;
+    @FXML
+    private TableColumn<CustomerOrder, String> email;
+    @FXML
+    private TableColumn<CustomerOrder, String> pickUpLocation;
+    @FXML
+    private TableColumn<CustomerOrder, String> destinationAddress;
+    @FXML
+    private TableColumn<CustomerOrder, String> destinationPostCode;
+    @FXML
+    private TableColumn<CustomerOrder, Double> amount;
+    @FXML
+    private TableColumn<CustomerOrder, LocalDate> deliveryDate;
+    @FXML
+    private TableColumn<CustomerOrder, Boolean> isHazardous;
 
 
-    @FXML
-    private TextArea textarea;
-    @FXML
-    private TextField emailt;
-    @FXML
-    private Button sendb;
+    //@FXML
+    //private TableColumn<Order, String> totalPrice;
+    //@FXML
+    //private TableColumn<Order, String> status;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
         calculateBtn.setOnAction(this::handleButtonAction);
         clearBtn.setOnAction(this::handleClearButtonEvent);
+        sendbtn.setOnAction(this::handleSendButton);
 
-        //the uncommented lines below were causing issues to load into account page.
 
-        //sendb.setOnAction(this::handleSendButton);
+        ObservableList<CustomerOrder> testController = FXCollections.observableArrayList();
 
-        orderid.setCellValueFactory(new PropertyValueFactory<>("orderId"));
-        customerid.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        orderId.setCellValueFactory(new PropertyValueFactory<>("customerOrderId"));
+        //customerId.setCellValueFactory(new PropertyValueFactory<>(""));
+        email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        pickUpLocation.setCellValueFactory(new PropertyValueFactory<>("pickUpAddress"));
+        destinationAddress.setCellValueFactory(new PropertyValueFactory<>("destinationAddress"));
+        destinationPostCode.setCellValueFactory(new PropertyValueFactory<>("postcode"));
         amount.setCellValueFactory(new PropertyValueFactory<>("amount"));
-        desAddress.setCellValueFactory(new PropertyValueFactory<>("destinationAddress"));
-        desPostCode.setCellValueFactory(new PropertyValueFactory<>("destinationPostcode"));
-        //pickupAdd.setCellValueFactory(new PropertyValueFactory<>("pickupAddress"));
-        deliverydate.setCellValueFactory(new PropertyValueFactory<>("deliveryDate"));
-        hazardousT.setCellValueFactory(new PropertyValueFactory<>("hazardous"));
-        //email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        deliveryDate.setCellValueFactory(new PropertyValueFactory<>("deliveryDate"));
+        isHazardous.setCellValueFactory(new PropertyValueFactory<>("hazardous"));
+        //totalPrice.
 
-        AccountantOrderRestDao a = new AccountantOrderRestDao();
-        Collection<AccountantOrder> list = null;
-        try {
-            list = a.getAll();
-        } catch (Exception e) {
-            e.printStackTrace();
+
+        //orderStatus.setCellValueFactory(new PropertyValueFactory<>("orderStatus"));
+        //orderStatus.setText();
+        //orderStatus.setText(String.valueOf(OrderStatus.INPROGRESS));
+
+        CustomerOrderRestDao customerOrderRestDao = new CustomerOrderRestDao();
+        Optional<Collection<CustomerOrder>> maybeList = customerOrderRestDao.getAll();
+
+        if (maybeList.isPresent()) {
+            table.setItems((ObservableList<CustomerOrder>) maybeList.get());
+            System.out.println(maybeList);
+
+        } else {
+            System.out.println("Error could not retrieve data from backend (AccountantController)");
         }
-        table.setItems((ObservableList) list);
-
-    }
-
-    ObservableList<AccountantOrder> TestController = FXCollections.observableArrayList();
 
 
+        table.setRowFactory(t -> {
+            TableRow<CustomerOrder> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    CustomerOrder rowData = row.getItem();
 
-    ObservableList<AccountantOrder> getAcc() {
-        ObservableList<AccountantOrder> list = FXCollections.observableArrayList();
-        list.add(new AccountantOrder(1, 1, 3000.00, "Street123", 123456,
-                "Pickup123", LocalDate.parse("2002-12-12"), true, "D@test", 250.00));
-        list.add(new AccountantOrder(2, 1, 3000.00, "Street123", 123456,
-                "Pickup123", LocalDate.parse("2002-12-12"), true, "D@test", 250.00));
+                    id.setText(String.valueOf(row.getItem().getCustomerOrderId()));
+                    mail.setText(row.getItem().getEmail());
+                    amount1.setText(String.valueOf(row.getItem().getAmount()));
+                    deliveryDate1.setText(String.valueOf(row.getItem().getDeliveryDate()));
+                    destinationAddress1.setText(String.valueOf(row.getItem().getDestinationAddress()));
+                    destinationPostCode1.setText(String.valueOf(row.getItem().getPostcode()));
+                    pickUpLocation1.setText(String.valueOf(row.getItem().getPickUpAddress()));
+                    isHazardous1.setSelected(row.getItem().isHazardous());
+                    isHazardous2.setSelected(row.getItem().isHazardous());
 
-        return list;
+
+
+
+
+
+
+                    System.out.println(rowData);
+                }
+            });
+            return row;
+        });
+
     }
 
 
     @FXML
-    public void handleSendButton(ActionEvent e1) {
-        String text = textarea.getText();
-        emailt.setText("" + text);
+    public void handleSendButton(ActionEvent actionEvent) {
+
+       int id = Integer.parseInt(this.id.getText().trim());
+        String email = this.mail.getText().trim();
+        String pickUp = pickUpLocation1.getText();
+        String destinationAdd = destinationAddress1.getText();
+        String destionationPc = destinationPostCode1.getText();
+        double amount = Double.parseDouble(amount1.getText().trim());
+        LocalDate deliverydateValue = LocalDate.parse(deliveryDate1.getCharacters());
+        Boolean hazardousSelectedOrder = isHazardous1.isSelected();
+
+
+
+        double proposedPrice = Double.parseDouble(totalPrice.getText().trim());
+
+
+        CustomerOrder customerOrder = new CustomerOrder(id, email,
+                pickUp, destinationAdd, destionationPc, amount,
+                deliverydateValue, hazardousSelectedOrder, proposedPrice);
+        System.out.println("______________________________________________");
+        System.out.println(customerOrder);
+
+
+        CustomerOrderRestDao customerOrderRestDao = new CustomerOrderRestDao();
+        Optional<CustomerOrder> customer = customerOrderRestDao.get(id);
+
+        System.out.println(customer.get());
+        customerOrderRestDao.update(customer.get());
+
+       customer = customerOrderRestDao.get(id);
+        System.out.println(customer);
+
+
+
+
+
     }
 
-    //calculate btn
+
+        //calculate btn
     @FXML
     protected void handleButtonAction(ActionEvent e) {
         String kms = kilometers.getText();
@@ -139,30 +223,15 @@ public class AccountantController implements Initializable {
             return;
         }
 
-        //checkbox get event
-        boolean hazardousSelected = hazardous.isSelected();
+        boolean hazardousSelected = isHazardous2.isSelected();
 
-        //possible to put calc in Calculator class?
-
-        //type cast String input into double
         double d = Double.parseDouble(kms);
         double d1 = Double.parseDouble(pricePerKilometers);
-
-        //type cast boolean into double
-        //one so that end result is not 0
-        //1.5 describes the percentage for a hazardous liquid
         double d2 = (hazardousSelected) ? 1.5 : 1;
-
         double res = d * d1 * d2;
-        //round result to two places after comma
         res = Math.round(100.0 * res) / 100.0;
-
         price.setText("" + res);
-
-
     }
-
-
 
 
     //clear button
@@ -173,7 +242,7 @@ public class AccountantController implements Initializable {
         pricePerKilometer.clear();
         pricePerKilometer.setText("");
         price.clear();
-        hazardous.setSelected(false);
+        isHazardous2.setSelected(false);
     }
 
 

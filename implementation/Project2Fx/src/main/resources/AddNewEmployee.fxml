@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -19,7 +18,7 @@
   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #000000;" stylesheets="@Stylesheet.css">
          <children>
             <Separator id="s" layoutX="225.0" layoutY="52.0" prefHeight="3.0" prefWidth="274.0" styleClass="s" stylesheets="@Stylesheet.css" />
-            <GridPane hgap="15.0" layoutX="30.399999618530273" layoutY="83.5999984741211" prefHeight="215.0" prefWidth="445.0" style="-fx-background-radius: 0;" vgap="15.0">
+            <GridPane hgap="15.0" layoutX="30.399999618530273" layoutY="83.5999984741211" prefHeight="270.0" prefWidth="445.0" style="-fx-background-radius: 0;" vgap="15.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="170.0" />
@@ -53,30 +52,26 @@
                   <Insets left="30.0" right="30.0" />
                </padding>
             </GridPane>
-            <GridPane hgap="15.0" layoutX="30.399999618530273" layoutY="393.6000061035156" prefHeight="122.0" prefWidth="442.0" vgap="15.0">
+            <GridPane hgap="15.0" layoutX="30.399999618530273" layoutY="425.6000061035156" prefHeight="50.0" prefWidth="445.0" vgap="15.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="170.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Employee" textFill="WHITE" />
-                  <ChoiceBox fx:id="department" prefHeight="26.0" prefWidth="287.0" style="-fx-background-radius: 0;" GridPane.columnIndex="1" />
-                  <CheckBox mnemonicParsing="false" style="-fx-background-radius: 0;" text="Hazardous " textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label text="Hazardous License" textFill="WHITE" GridPane.rowIndex="1" />
+                  <CheckBox fx:id="HazardousLicense" mnemonicParsing="false" style="-fx-background-radius: 0;" text="Hazardous " textFill="WHITE" GridPane.columnIndex="1" />
+                  <Label text="Hazardous License" textFill="WHITE" />
                </children>
                <padding>
                   <Insets left="30.0" right="30.0" />
                </padding>
             </GridPane>
-            <Separator id="s" layoutX="226.0" layoutY="366.0" prefHeight="6.0" prefWidth="274.0" styleClass="s" stylesheets="@Stylesheet.css" />
-            <Label layoutX="226.0" layoutY="343.0" text="DEPARTMENT" textFill="WHITE" />
-            <Button id="dd" layoutX="237.0" layoutY="550.0" mnemonicParsing="false" prefWidth="90.0" styleClass="dd" stylesheets="@Stylesheet.css" text="OK" textFill="WHITE" />
-            <Button id="dd" layoutX="350.0" layoutY="550.0" mnemonicParsing="false" prefWidth="90.0" styleClass="dd" stylesheets="@Stylesheet.css" text="CANCEL" textFill="WHITE" />
+            <Separator id="s" layoutX="226.0" layoutY="409.0" prefHeight="6.0" prefWidth="274.0" styleClass="s" stylesheets="@Stylesheet.css" />
+            <Label layoutX="226.0" layoutY="386.0" text="LICENCE" textFill="WHITE" />
+            <Button id="dd" fx:id="add" layoutX="353.0" layoutY="550.0" mnemonicParsing="false" prefWidth="90.0" styleClass="dd" stylesheets="@Stylesheet.css" text="Add" textFill="WHITE" />
+            <Button id="dd" layoutX="225.0" layoutY="550.0" mnemonicParsing="false" prefWidth="90.0" styleClass="dd" stylesheets="@Stylesheet.css" text="CANCEL" textFill="WHITE" />
             <Label layoutX="225.0" layoutY="27.0" text="EMPLOYEE CONTACT INFORMATION" textFill="WHITE" />
          </children>
       </AnchorPane>

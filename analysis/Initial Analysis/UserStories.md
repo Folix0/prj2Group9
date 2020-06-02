@@ -19,7 +19,7 @@
 
 ### Accountant:
 
-* As an accountant, I want to access the invoices tab and sort through them to find the order I am looking for and t search for informaton I need to know.
+* As an accountant, I want to access the invoices tab and sort through them to find the order I am looking for and t search for information I need to know.
 * As an accountant, I want to search the history of past orders from a specific customer to search for information I want to know.
 
 * As an accountant, I want to be able to add a new location to a list where available locations are registered to enlarge the list and thus have more locations available. 
@@ -37,7 +37,7 @@
 * As an accountant I want to be able to send a quotation to the customer containing among other things a proposed price so that the customer can confirm his order. 
 * As an accountant I want to be able to store the order in order to make the invoice. 
 * As an accountant I want to be able to receive a message from the driver if the delivery is delayed to inform the customer about that issue 
-* As an accoutant I want to be able to receive a message from the driver if the delivery is delayed so that I can add a discount to the order 
+* As an accountant I want to be able to receive a message from the driver if the delivery is delayed so that I can add a discount to the order 
 * As an accountant I want to be able to receive a message from the driver if the delivery is delayed so that I can decide if the order needs to be canceled and thus to inform the customer about this issue.
 
 
@@ -48,7 +48,7 @@
 * As a planner, I want to be able to assign two drivers to one truck.
 * As a planner, I want to keep track if the truck is under maintenance to make planning efficient. 
 * As a planner, I want to see detailed information about trucks and trailers when adding them to an order. 
-* As a planner I want to be able to see the driver's license do that I can check if the driver that I want to assign to an order is allowed to tranport hazardous liquids. 
+* As a planner I want to be able to see the driver's license do that I can check if the driver that I want to assign to an order is allowed to transport hazardous liquids. 
 * As a planner I want to be abel to create a work order plan containing all information from the order (the order amount, if it is hazardous or not, the destination address, the postcode, the delivery date and time) so that I can do any further plannings such as assign a truck or a trailer. 
 
 

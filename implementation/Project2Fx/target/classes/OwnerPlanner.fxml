@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="1100.0" minHeight="-Infinity" minWidth="1100.0" prefHeight="650.0" prefWidth="1100.0" style="-fx-background-color: #000000;" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Fx.MainFx">
+<BorderPane maxHeight="-Infinity" maxWidth="1100.0" minHeight="-Infinity" minWidth="1100.0" prefHeight="650.0" prefWidth="1100.0" style="-fx-background-color: #000000;" stylesheets="@Stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Fx.PlannerController">
    <top>
       <Label prefHeight="0.0" prefWidth="79.0" text="PLANNER" textFill="WHITE" BorderPane.alignment="CENTER">
          <font>
@@ -39,17 +39,17 @@
                      <children>
                         <SplitPane layoutX="15.0" layoutY="35.0" />
                         <Label layoutX="16.0" layoutY="13.0" text="Quotation" textFill="WHITE" />
-                        <TableView prefHeight="533.0" prefWidth="1101.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="driver" prefHeight="533.0" prefWidth="1101.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <columns>
-                              <TableColumn prefWidth="66.39999085664749" text="Driver ID" />
-                              <TableColumn prefWidth="105.60000610351562" text="First Name" />
-                              <TableColumn prefWidth="120.00004577636719" text="Last Name" />
-                              <TableColumn prefWidth="103.99993896484375" text="Birthdate" />
-                              <TableColumn prefWidth="193.5999755859375" text="Email" />
-                              <TableColumn prefWidth="108.0" text="Phone Number" />
-                              <TableColumn prefWidth="177.59991455078125" text="Address" />
-                              <TableColumn prefWidth="86.4000244140625" text="Available" />
-                              <TableColumn prefWidth="132.800048828125" text="Hazardous License" />
+                              <TableColumn fx:id="id" prefWidth="66.39999085664749" text="Driver ID" />
+                              <TableColumn fx:id="FirstName" prefWidth="105.60000610351562" text="First Name" />
+                              <TableColumn fx:id="LastName" prefWidth="120.00004577636719" text="Last Name" />
+                              <TableColumn fx:id="Birthdate" prefWidth="103.99993896484375" text="Birthdate" />
+                              <TableColumn fx:id="Email" prefWidth="193.5999755859375" text="Email" />
+                              <TableColumn fx:id="PhoneNumber" prefWidth="108.0" text="Phone Number" />
+                              <TableColumn fx:id="Address" prefWidth="177.59991455078125" text="Address" />
+                              <TableColumn fx:id="AvailableD" prefWidth="86.4000244140625" text="Available" />
+                              <TableColumn fx:id="HazardousLicenseD" prefWidth="132.800048828125" text="Hazardous License" />
                               <TableColumn prefWidth="546.39990234375" />
                            </columns>
                         </TableView>
@@ -62,27 +62,26 @@
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <Label layoutX="17.0" layoutY="12.0" text="TRUCK INFORMATION" textFill="WHITE" />
-                        <TableView layoutY="34.0" prefHeight="240.0" prefWidth="1106.0" AnchorPane.bottomAnchor="286.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="34.0">
+                        <TableView fx:id="Truck" layoutY="34.0" prefHeight="240.0" prefWidth="1106.0" AnchorPane.bottomAnchor="286.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="34.0">
                            <columns>
-                              <TableColumn text="Truck ID" />
-                              <TableColumn prefWidth="110.0" text="Available" />
-                              <TableColumn prefWidth="150.0" text="Weight" />
-                              <TableColumn prefWidth="150.0" text="Mileage" />
-                              <TableColumn prefWidth="311.2000427246094" text="Pickup Location" />
-                              <TableColumn minWidth="0.0" prefWidth="92.800048828125" text="Maintenance" />
-                              <TableColumn minWidth="0.0" prefWidth="214.39990234375" />
+                              <TableColumn fx:id="LicencePlateT" prefWidth="134.3999908566475" text=" Truck Licence Plate" />
+                              <TableColumn fx:id="AvailableT" prefWidth="84.0" text="Available" />
+                              <TableColumn fx:id="WeightT" prefWidth="122.40003967285156" text="Weight" />
+                              <TableColumn fx:id="Mileage" prefWidth="150.0" text="Mileage" />
+                              <TableColumn fx:id="PickupLocationT" prefWidth="311.2000427246094" text="Pickup Location" />
+                              <TableColumn fx:id="MaintenanceT" minWidth="0.0" prefWidth="294.39996337890625" text="Maintenance" />
                            </columns>
                         </TableView>
-                        <TableView layoutY="322.0" prefHeight="240.0" prefWidth="1106.0">
+                        <TableView fx:id="trailer" layoutY="322.0" prefHeight="240.0" prefWidth="1106.0">
                            <columns>
-                              <TableColumn text="Trailer ID" />
-                              <TableColumn prefWidth="110.0" text="Available" />
-                              <TableColumn prefWidth="110.0" text="Hazardous" />
-                              <TableColumn minWidth="0.0" prefWidth="130.4000244140625" text="Weight" />
-                              <TableColumn prefWidth="110.0" text="Cleaned" />
-                              <TableColumn prefWidth="110.0" text="Capacity" />
-                              <TableColumn minWidth="0.0" prefWidth="318.39996337890625" text="Pickup Location" />
-                              <TableColumn minWidth="0.0" prefWidth="131.2000732421875" text="Maintenance" />
+                              <TableColumn fx:id="LicencePlate" prefWidth="135.99999696016312" text="Trailer Licence Plate" />
+                              <TableColumn fx:id="Available" prefWidth="95.20001220703125" text="Available" />
+                              <TableColumn fx:id="Hazardous" prefWidth="99.20002746582031" text="Hazardous" />
+                              <TableColumn fx:id="Weight" minWidth="0.0" prefWidth="102.4000244140625" text="Weight" />
+                              <TableColumn fx:id="Cleaned" prefWidth="110.0" text="Cleaned" />
+                              <TableColumn fx:id="Capacity" prefWidth="110.0" text="Capacity" />
+                              <TableColumn fx:id="PickupLocation" minWidth="0.0" prefWidth="208.0" text="Pickup Location" />
+                              <TableColumn fx:id="Maintenance" minWidth="0.0" prefWidth="242.39996337890625" text="Maintenance" />
                            </columns>
                         </TableView>
                         <Label layoutX="17.0" layoutY="299.0" text="TRAILER INFORMATION" textFill="WHITE" />
@@ -107,7 +106,7 @@
                               <TableColumn prefWidth="136.800048828125" text="Destination Postcode" />
                               <TableColumn prefWidth="128.800048828125" text="Pickup Location" />
                               <TableColumn prefWidth="99.99981689453125" text="Hazardous" />
-                              <TableColumn prefWidth="205.60009765625" />
+                              <TableColumn prefWidth="205.60009765625" text="Status" />
                           </columns>
                         </TableView>
                      </children>

@@ -6,27 +6,19 @@
 package restDao;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
 
 public interface DAOlite<T> {
-    /*
-    Optional<T> get(int id);
 
-    Collection<T> getAll();
+    void save(T e) throws IOException;
 
-    Optional<I> save(T t);
+    Optional<T> get(int id) throws IOException, InterruptedException;
 
-    void update(T t);
+    Optional<Collection<T>> getAll();
 
-    void delete(T t);
-*/
-    void save(T e);
-    T get(int id) throws Exception;
-    Collection<T> getAll() throws Exception;
     T update(T e);
+
     void delete(int id);
 }
