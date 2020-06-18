@@ -56,19 +56,19 @@
                               <Label text="Email" textFill="WHITE" GridPane.rowIndex="1" />
                               <Label text="Amount" textFill="WHITE" GridPane.rowIndex="2" />
                               <Label text="Delivery Date" textFill="WHITE" GridPane.rowIndex="3" />
-                              <TextField fx:id="mail" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextField fx:id="amount1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TextField fx:id="deliveryDate1" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="mailTf" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="amountTf" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="deliveryDateTf" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <Label text="Order ID" textFill="WHITE" />
-                              <TextField fx:id="id" GridPane.columnIndex="1" />
+                              <TextField fx:id="orderIdTf" GridPane.columnIndex="1" />
                            </children>
                         </GridPane>
                         <Separator id="s" layoutX="703.0" layoutY="265.0" orientation="VERTICAL" prefHeight="297.0" prefWidth="18.0" styleClass="s" stylesheets="@Stylesheet.css" />
                         <Label layoutX="755.0" layoutY="265.0" text="CALCULATE PRICE" textFill="WHITE" />
-                        <TextField fx:id="kilometers" layoutX="896.0" layoutY="314.0" prefHeight="26.0" prefWidth="175.0" />
-                        <TextField fx:id="pricePerKilometer" layoutX="895.0" layoutY="357.0" prefHeight="26.0" prefWidth="175.0" />
+                        <TextField fx:id="kilometersCalculatorTf" layoutX="896.0" layoutY="314.0" prefHeight="26.0" prefWidth="175.0" />
+                        <TextField fx:id="pricePerKilometerCalculatorTf" layoutX="895.0" layoutY="357.0" prefHeight="26.0" prefWidth="175.0" />
                         <Label layoutX="755.0" layoutY="362.0" text="Price per Kilometer" textFill="WHITE" />
-                        <CheckBox fx:id="isHazardous2" layoutX="896.0" layoutY="400.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="84.0" text="Hazardous" textFill="WHITE" />
+                        <CheckBox fx:id="isHazardousCalculator" layoutX="896.0" layoutY="400.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="84.0" text="Hazardous" textFill="WHITE" />
                         <Button id="dd" fx:id="calculateBtn" layoutX="988.0" layoutY="507.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="82.0" styleClass="dd" stylesheets="@Stylesheet.css" text="CALCULATE" textFill="WHITE" />
                         <GridPane hgap="15.0" layoutX="372.0" layoutY="288.0" prefHeight="200.0" prefWidth="300.0" vgap="7.0">
                           <columnConstraints>
@@ -85,23 +85,23 @@
                            <children>
                               <Label text="Destination Address" textFill="WHITE" />
                               <Label text="Total Price" textFill="WHITE" GridPane.rowIndex="3" />
-                              <TextField fx:id="destinationAddress1" GridPane.columnIndex="1" />
-                              <TextField fx:id="totalPrice" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="destinationAddressTf" GridPane.columnIndex="1" />
+                              <TextField fx:id="totalPriceTf" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <Label text="Hazardous Liquid" textFill="WHITE" GridPane.rowIndex="4" />
-                              <CheckBox fx:id="isHazardous1" mnemonicParsing="false" text="Hazardous" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <CheckBox fx:id="isHazardousCbQuotation" mnemonicParsing="false" text="Hazardous" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                               <Label text="Pickup Location" textFill="WHITE" GridPane.rowIndex="2" />
-                              <TextField fx:id="pickUpLocation1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="pickupLocationTf" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <Label text="Destination Postcode" textFill="WHITE" GridPane.rowIndex="1" />
-                              <TextField fx:id="destinationPostCode1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="destinationPostcodeTf" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
-                        <TextArea fx:id="price" layoutX="896.0" layoutY="433.0" prefHeight="4.0" prefWidth="175.0" style="-fx-background-radius: 0;" />
+                        <TextArea fx:id="priceTextAreaCalculator" layoutX="896.0" layoutY="433.0" prefHeight="4.0" prefWidth="175.0" style="-fx-background-radius: 0;" />
                         <Label layoutX="755.0" layoutY="443.0" text="Total Price" textFill="WHITE" />
                         <Button id="dd" fx:id="sendbtn" layoutX="589.0" layoutY="507.0" mnemonicParsing="false" onAction="#handleSendButton" prefWidth="82.0" styleClass="dd" stylesheets="@Stylesheet.css" text="SEND" textFill="WHITE" />
                         <Separator id="s" layoutX="755.0" layoutY="290.0" prefHeight="2.0" prefWidth="351.0" styleClass="s" stylesheets="@Stylesheet.css" />
                         <Label layoutX="755.0" layoutY="400.0" text="Hazardous Liquid" textFill="WHITE" />
                         <Button id="dd" fx:id="clearBtn" layoutX="897.0" layoutY="507.0" mnemonicParsing="false" onAction="#handleClearButtonEvent" prefHeight="26.0" prefWidth="82.0" styleClass="dd" stylesheets="@Stylesheet.css" text="CLEAR" textFill="WHITE" />
-                        <Button id="dd" layoutX="497.0" layoutY="507.0" mnemonicParsing="false" prefWidth="82.0" styleClass="dd" stylesheets="@Stylesheet.css" text="REJECT" textFill="WHITE" />
+                        <Button id="dd" fx:id="rejectbtn" layoutX="497.0" layoutY="507.0" mnemonicParsing="false" onAction="#handleRejectButton" prefWidth="82.0" styleClass="dd" stylesheets="@Stylesheet.css" text="REJECT" textFill="WHITE" />
                         <TableView fx:id="table" layoutX="1.0" layoutY="33.0" prefHeight="219.0" prefWidth="1100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0">
                           <columns>
                               <TableColumn fx:id="orderId" prefWidth="87.19997864961624" text="Order ID" />
@@ -112,8 +112,8 @@
                               <TableColumn fx:id="amount" prefWidth="97.5999755859375" text="Amount" />
                               <TableColumn fx:id="deliveryDate" minWidth="0.0" prefWidth="107.199951171875" text="Delivery Date" />
                               <TableColumn fx:id="isHazardous" prefWidth="113.60009765625" text="Hazardous" />
-                              <TableColumn prefWidth="110.0" text="Status" />
-                              <TableColumn prefWidth="110.0" />
+                              <TableColumn fx:id="orderStatus" minWidth="0.0" prefWidth="114.40008544921875" text="Status" />
+                              <TableColumn prefWidth="106.39990234375" />
                           </columns>
                         </TableView>
                      </children>

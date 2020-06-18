@@ -40,7 +40,8 @@ public class AccountantDAO implements DAOlite<Accountant, Integer> {
                     String address = rs.getString("address");
 
 
-                    accountant = Optional.of(new Accountant(accountantId, firstName, lastName, email, birthDate, phoneNumber, address));
+                    accountant = Optional.of(new Accountant(accountantId, firstName, lastName, email, birthDate,
+                            phoneNumber, address));
                     LOGGER.log(Level.INFO, "Found {0} in database", accountant.get());
                 }
             } catch (SQLException ex) {
@@ -59,8 +60,8 @@ public class AccountantDAO implements DAOlite<Accountant, Integer> {
 
         connection.ifPresent(conn -> {
             try (Statement statement = conn.createStatement();
-                 ResultSet rs = statement.executeQuery(sql)) {
-
+                 ResultSet rs = statement.executeQuery(sql))
+            {
                 while (rs.next()) {
 
                     int customerId = rs.getInt("id");
@@ -71,15 +72,15 @@ public class AccountantDAO implements DAOlite<Accountant, Integer> {
                     String phoneNumber = rs.getString("phonenumber");
                     String address = rs.getString("address");
 
-
-                    Accountant accountant = new Accountant(customerId, firstName, lastName, email, birthDate, phoneNumber, address);
+                    Accountant accountant = new Accountant(customerId, firstName, lastName, email, birthDate,
+                            phoneNumber, address);
 
                     accountants.add(accountant);
 
                     LOGGER.log(Level.INFO, "Found {0} in database", accountants);
                 }
-
-            } catch (SQLException ex) {
+            }
+            catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }
         });
@@ -100,8 +101,8 @@ public class AccountantDAO implements DAOlite<Accountant, Integer> {
             Optional<Integer> generatedId = Optional.empty();
 
             try (PreparedStatement statement = conn.prepareStatement(sql,
-                    Statement.RETURN_GENERATED_KEYS)) {
-
+                    Statement.RETURN_GENERATED_KEYS))
+            {
                 statement.setString(1, nonNullUser.getFirstName());
                 statement.setString(2, nonNullUser.getLastName());
                 statement.setDate(3, Date.valueOf(nonNullUser.getBirthDate()));
@@ -109,13 +110,14 @@ public class AccountantDAO implements DAOlite<Accountant, Integer> {
                 statement.setString(5, nonNullUser.getPhoneNumber());
                 statement.setString(6, nonNullUser.getAddress());
 
-
                 int numberOfInsertedRows = statement.executeUpdate();
 
                 //Retrieve the auto-generated id
                 if (numberOfInsertedRows > 0) {
-                    try (ResultSet resultSet = statement.getGeneratedKeys()) {
-                        if (resultSet.next()) {
+                    try (ResultSet resultSet = statement.getGeneratedKeys())
+                    {
+                        if (resultSet.next())
+                        {
                             generatedId = Optional.of(resultSet.getInt(1));
                         }
                     }
@@ -123,10 +125,10 @@ public class AccountantDAO implements DAOlite<Accountant, Integer> {
 
                 LOGGER.log(Level.INFO, "{0} created successfully? {1}",
                         new Object[]{nonNullUser, numberOfInsertedRows > 0});
-            } catch (SQLException ex) {
+            }
+            catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }
-
             return generatedId;
         });
     }
@@ -146,8 +148,8 @@ public class AccountantDAO implements DAOlite<Accountant, Integer> {
                 + "id = ?";
 
         connection.ifPresent(conn -> {
-            try (PreparedStatement statement = conn.prepareStatement(sql)) {
-
+            try (PreparedStatement statement = conn.prepareStatement(sql))
+            {
                 statement.setString(1, nonNullUser.getFirstName());
                 statement.setString(2, nonNullUser.getLastName());
                 statement.setDate(3, Date.valueOf(nonNullUser.getBirthDate()));
@@ -162,7 +164,8 @@ public class AccountantDAO implements DAOlite<Accountant, Integer> {
                 LOGGER.log(Level.INFO, "Was the Accountant updated successfully? {0}",
                         numberOfUpdatedRows > 0);
 
-            } catch (SQLException ex) {
+            }
+            catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }
         });
@@ -176,16 +179,16 @@ public class AccountantDAO implements DAOlite<Accountant, Integer> {
         String sql = "DELETE FROM accountant WHERE id = ?";
 
         connection.ifPresent(conn -> {
-            try (PreparedStatement statement = conn.prepareStatement(sql)) {
-
+            try (PreparedStatement statement = conn.prepareStatement(sql))
+            {
                 statement.setInt(1, nonNullUser.getId());
 
                 int numberOfDeletedRows = statement.executeUpdate();
 
                 LOGGER.log(Level.INFO, "Was the Accountant deleted successfully? {0}",
                         numberOfDeletedRows > 0);
-
-            } catch (SQLException ex) {
+            }
+            catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }
         });

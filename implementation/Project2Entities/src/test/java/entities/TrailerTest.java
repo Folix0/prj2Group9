@@ -1,28 +1,39 @@
-/*package entities;
+package entities;
 
-import org.junit.Before;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.time.LocalDate;
 
-import static org.junit.Assert.*;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 
 public class TrailerTest {
+    private Trailer trailer = new Trailer(1, "LN-123", true, true, false,
+            1500.50, "Street123", LocalDate.of(2020, 12, 12),
+            1200.50);
 
-
-    Trailer trailer;
-
-
-    @Before
-    public void setUp() throws Exception {
-        trailer = new Trailer(true, "LN-123", 1, true, false,
-                1500.50, "Street123", LocalDate.of(2020, 12, 12),
-                1200.50);
+    @Test
+    public void GetTrailerIdTest() {
+        assertThat(trailer.getId()).isEqualTo(1);
     }
 
+    @Test
+    public void SetTrailerIdTest() {
+        trailer.setId(1);
+        assertThat(trailer.getId()).isEqualTo(1);
+    }
 
+    @Test
+    public void getTrailerLicensePlateTest() {
+        assertThat(trailer.getTrailerLicencePlate()).isEqualTo("LN-123");
+    }
+
+    @Test
+    public void setTrailerLicensePlateTest() {
+        trailer.setTrailerLicencePlate("LN-124");
+        assertThat(trailer.getTrailerLicencePlate()).isEqualTo("LN-124");
+    }
 
     @Test
     public void isCleanedTest() {
@@ -35,34 +46,6 @@ public class TrailerTest {
         assertThat(trailer.isCleaned()).isEqualTo(true);
     }
 
-
-
-    @Test
-    public void getTrailerLicensePlateTest() {
-        assertThat(trailer.getTrailerLicencePlate()).isEqualTo("LN-123");
-    }
-
-    @Test
-    public void setTrailerLicensePlateTest() {
-        trailer.setTrailerPickupLocation("LN-123");
-        assertThat(trailer.getTrailerPickupLocation()).isEqualTo("LN-123");
-    }
-
-
-
-    @Test
-    public void testGetTrailerId() {
-        assertThat(trailer.getTrailerId()).isEqualTo(1);
-    }
-
-    @Test
-    public void testSetTrailerId() {
-        trailer.setTrailerId(1);
-        assertThat(trailer.getTrailerId()).isEqualTo(1);
-    }
-
-
-
     @Test
     public void isAvailableTest() {
         assertThat(trailer.isAvailable()).isEqualTo(true);
@@ -71,11 +54,10 @@ public class TrailerTest {
 
     @Test
     public void setAvailableTest() {
-        trailer.setAvailable(true);
-        assertThat(trailer.isAvailable()).isEqualTo(true);
+        trailer.setAvailable(false);
+        assertThat(trailer.isAvailable()).isEqualTo(false);
 
     }
-
 
     @Test
     public void getIsHazardousTest() {
@@ -88,8 +70,6 @@ public class TrailerTest {
         assertThat(trailer.isHazardous()).isEqualTo(false);
     }
 
-
-
     @Test
     public void getCapacityTest() {
         assertThat(trailer.getCapacity()).isEqualTo(1500.50);
@@ -101,21 +81,17 @@ public class TrailerTest {
         assertThat(trailer.getCapacity()).isEqualTo(1500.50);
     }
 
-
-
     @Test
     public void getTrailerPickupLocationTest() {
         assertThat(trailer.getTrailerPickupLocation()).isEqualTo("Street123");
     }
 
     @Test
-    public void setTrailerPickupLocation() {
+    public void setTrailerPickupLocationTest() {
         trailer.setTrailerPickupLocation("Street123");
         assertThat(trailer.getTrailerPickupLocation()).isEqualTo("Street123");
 
     }
-
-
 
     @Test
     public void getMaintenanceCheckdateTest() {
@@ -123,12 +99,10 @@ public class TrailerTest {
     }
 
     @Test
-    public void setMaintenanceCheckdate() {
+    public void setMaintenanceCheckdateTest() {
         trailer.setMaintenanceCheckdate(LocalDate.of(2020, 12, 12));
         assertThat(trailer.getMaintenanceCheckdate()).isEqualTo(LocalDate.of(2020, 12, 12));
     }
-
-
 
     @Test
     public void getTrailerWeightTest() {
@@ -141,17 +115,20 @@ public class TrailerTest {
         assertThat(trailer.getTrailerWeight()).isEqualTo(1200.50);
     }
 
-
-    /*@Test
-    void constructorTest(){
-        Trailer t1 = new Trailer(true, true, 400, 55.50, "Home", LocalDate.of(2019, 12, 31));
-        assertThat(t1.getCapacity()).isEqualTo(300);
-        assertThat(t1.getTrailerWeight()).isEqualTo(500.0);
-        Trailer t2 = new Trailer(true, true, 900, 8000, "Home", LocalDate.of(2019, 12, 31));
-        assertThat(t2.getCapacity()).isEqualTo(6000);
-        assertThat(t2.getTrailerWeight()).isEqualTo(800);
-
-
+    @Test
+    public void testToString()
+    {
+        String expected = "Trailer{" +
+                "id=" + trailer.getId() +
+                ", trailerLicencePlate='" + trailer.getTrailerLicencePlate() + '\'' +
+                ", isCleaned=" + trailer.isCleaned() +
+                ", isAvailable=" + trailer.isAvailable() +
+                ", isHazardous=" + trailer.isHazardous() +
+                ", capacity=" + trailer.getCapacity() +
+                ", trailerPickupLocation='" + trailer.getTrailerPickupLocation() + '\'' +
+                ", maintenanceCheckdate=" + trailer.getMaintenanceCheckdate() +
+                ", trailerWeight=" + trailer.getTrailerWeight() +
+                '}';
+        Assert.assertEquals(expected, trailer.toString());
     }
 }
-        */

@@ -27,10 +27,10 @@ public class PlannerDAO implements DAOlite<Planner, Integer> {
             String sql = "SELECT * FROM planner WHERE id = " + id;
 
             try (Statement statement = conn.createStatement();
-                 ResultSet rs = statement.executeQuery(sql)) {
+                 ResultSet rs = statement.executeQuery(sql))
+            {
 
                 if (rs.next()) {
-
                     int plannerId = rs.getInt("id");
                     String firstName = rs.getString("firstname");
                     String lastName = rs.getString("lastname");
@@ -39,11 +39,14 @@ public class PlannerDAO implements DAOlite<Planner, Integer> {
                     String phoneNumber = rs.getString("phonenumber");
                     String address = rs.getString("address");
 
+                    planner = Optional.of(new Planner(plannerId, firstName, lastName, email, birthDate,
+                            phoneNumber, address));
 
-                    planner = Optional.of(new Planner(plannerId, firstName, lastName, email, birthDate, phoneNumber, address));
                     LOGGER.log(Level.INFO, "Found {0} in database", planner.get());
                 }
-            } catch (SQLException ex) {
+
+            }
+            catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }
 
@@ -59,7 +62,8 @@ public class PlannerDAO implements DAOlite<Planner, Integer> {
 
         connection.ifPresent(conn -> {
             try (Statement statement = conn.createStatement();
-                 ResultSet rs = statement.executeQuery(sql)) {
+                 ResultSet rs = statement.executeQuery(sql))
+            {
 
                 while (rs.next()) {
 
@@ -72,14 +76,16 @@ public class PlannerDAO implements DAOlite<Planner, Integer> {
                     String address = rs.getString("address");
 
 
-                    Planner customer = new Planner(customerId, firstName, lastName, email, birthDate, phoneNumber, address);
+                    Planner customer = new Planner(customerId, firstName, lastName, email, birthDate,
+                            phoneNumber, address);
 
                     planners.add(customer);
 
                     LOGGER.log(Level.INFO, "Found {0} in database", planners);
                 }
 
-            } catch (SQLException ex) {
+            }
+            catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }
         });
@@ -100,7 +106,8 @@ public class PlannerDAO implements DAOlite<Planner, Integer> {
             Optional<Integer> generatedId = Optional.empty();
 
             try (PreparedStatement statement = conn.prepareStatement(sql,
-                    Statement.RETURN_GENERATED_KEYS)) {
+                    Statement.RETURN_GENERATED_KEYS))
+            {
 
                 statement.setString(1, nonNullUser.getFirstName());
                 statement.setString(2, nonNullUser.getLastName());
@@ -108,7 +115,6 @@ public class PlannerDAO implements DAOlite<Planner, Integer> {
                 statement.setString(4, nonNullUser.getEmail());
                 statement.setString(5, nonNullUser.getPhoneNumber());
                 statement.setString(6, nonNullUser.getAddress());
-
 
                 int numberOfInsertedRows = statement.executeUpdate();
 
@@ -123,7 +129,9 @@ public class PlannerDAO implements DAOlite<Planner, Integer> {
 
                 LOGGER.log(Level.INFO, "{0} created successfully? {1}",
                         new Object[]{nonNullUser, numberOfInsertedRows > 0});
-            } catch (SQLException ex) {
+
+            }
+            catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }
 
@@ -146,7 +154,8 @@ public class PlannerDAO implements DAOlite<Planner, Integer> {
                 + "id = ?";
 
         connection.ifPresent(conn -> {
-            try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            try (PreparedStatement statement = conn.prepareStatement(sql))
+            {
 
                 statement.setString(1, nonNullUser.getFirstName());
                 statement.setString(2, nonNullUser.getLastName());
@@ -162,7 +171,8 @@ public class PlannerDAO implements DAOlite<Planner, Integer> {
                 LOGGER.log(Level.INFO, "Was the Customer updated successfully? {0}",
                         numberOfUpdatedRows > 0);
 
-            } catch (SQLException ex) {
+            }
+            catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }
         });
@@ -176,7 +186,8 @@ public class PlannerDAO implements DAOlite<Planner, Integer> {
         String sql = "DELETE FROM planner WHERE id = ?";
 
         connection.ifPresent(conn -> {
-            try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            try (PreparedStatement statement = conn.prepareStatement(sql))
+            {
 
                 statement.setInt(1, nonNullUser.getId());
 
@@ -185,7 +196,8 @@ public class PlannerDAO implements DAOlite<Planner, Integer> {
                 LOGGER.log(Level.INFO, "Was the Customer deleted successfully? {0}",
                         numberOfDeletedRows > 0);
 
-            } catch (SQLException ex) {
+            }
+            catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }
         });

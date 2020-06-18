@@ -4,19 +4,9 @@ import java.time.LocalDate;
 
 public class DeliveryTour {
 
-    private int id;
+    private final int id;
     private LocalDate startOfDeliveryDate;
     private LocalDate finishOfDeliveryDate;
-
-    public DeliveryTour() {
-
-    }
-
-
-    public DeliveryTour(LocalDate startOfDeliveryDate, LocalDate finishOfDeliveryDate) {
-        this.startOfDeliveryDate = startOfDeliveryDate;
-        this.finishOfDeliveryDate = finishOfDeliveryDate;
-    }
 
     public DeliveryTour(int id, LocalDate startOfDeliveryDate, LocalDate finishOfDeliveryDate) {
         this.id = id;
@@ -26,10 +16,6 @@ public class DeliveryTour {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public LocalDate getStartOfDeliveryDate() {

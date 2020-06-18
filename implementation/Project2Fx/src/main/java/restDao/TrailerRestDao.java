@@ -210,8 +210,8 @@ public class TrailerRestDao implements DAOlite<Trailer>{
     }
 
     @Override
-    public Trailer update(Trailer trailer) {
-        return null;
+    public void update(Trailer trailer) {
+
     }
 
     @Override

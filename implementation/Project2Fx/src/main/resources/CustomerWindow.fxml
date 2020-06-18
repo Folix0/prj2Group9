@@ -46,12 +46,12 @@
                               <Label text="Birthdate" textFill="WHITE" GridPane.rowIndex="3" />
                               <Label text="Phone Number" textFill="WHITE" GridPane.rowIndex="4" />
                               <Label text="Address/Nr." textFill="WHITE" GridPane.rowIndex="5" />
-                              <TextField fx:id="name2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextField fx:id="email" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TextField fx:id="phonenr" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <TextField fx:id="address" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <DatePicker fx:id="birthdate" prefHeight="26.0" prefWidth="221.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <TextField fx:id="name1" GridPane.columnIndex="1" />
+                              <TextField fx:id="lastNameTf" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="emailTf" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="phinenumberTf" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField fx:id="addressTf" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <DatePicker fx:id="birthdateTf" prefHeight="26.0" prefWidth="221.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="firstNameTf" GridPane.columnIndex="1" />
                               <Label stylesheets="@Stylesheet.css" text="First Name" textFill="WHITE" />
                            </children>
                         </GridPane>
@@ -72,22 +72,22 @@
                               <Label text="Pickup Location" textFill="WHITE" />
                               <Label text="Destination Address" textFill="WHITE" GridPane.rowIndex="1" />
                               <Label text="Destination Postcode" textFill="WHITE" GridPane.rowIndex="2" />
-                              <Label text="Amount in Tons" textFill="WHITE" GridPane.rowIndex="3" />
+                              <Label text="Amount in Litres" textFill="WHITE" GridPane.rowIndex="3" />
                               <Label text="Delivery Date" textFill="WHITE" GridPane.rowIndex="4" />
                               <Label text="Hazardous" textFill="WHITE" GridPane.rowIndex="5" />
-                              <TextField fx:id="pickuplocation" GridPane.columnIndex="1" />
-                              <TextField fx:id="destinationaddress" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextField fx:id="destinationpostcode" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TextField fx:id="amountintons" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField fx:id="pickupLocationTf" GridPane.columnIndex="1" />
+                              <TextField fx:id="destinationAddressTf" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="destinationpostcodeTf" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField fx:id="amountInLitresTf" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <CheckBox fx:id="hazardouscus" mnemonicParsing="false" prefHeight="11.0" prefWidth="119.0" text="Hazardous" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <DatePicker fx:id="deliverydate" prefHeight="26.0" prefWidth="218.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <DatePicker fx:id="deliveryDateTf" prefHeight="26.0" prefWidth="218.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                            </children>
                         </GridPane>
                         <Label layoutX="320.0" layoutY="19.0" prefHeight="18.0" prefWidth="109.0" text="CUSTOMER DETAILS" textFill="WHITE" AnchorPane.bottomAnchor="577.0" AnchorPane.topAnchor="19.0" />
                         <Label layoutX="670.0" layoutY="19.0" text="ORDER DETAILS" textFill="WHITE" AnchorPane.topAnchor="19.0" />
                         <Separator layoutY="36.0" prefHeight="11.0" prefWidth="430.0" AnchorPane.topAnchor="36.0" />
                         <Separator layoutX="691.0" layoutY="38.0" prefHeight="8.0" prefWidth="430.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="38.0" />
-                        <Button fx:id="sendbutton" layoutX="969.0" layoutY="558.0" mnemonicParsing="false" onAction="#handleSendButtonAction" prefWidth="90.0" styleClass="bb" stylesheets="@Stylesheet.css" text="SEND ORDER" textFill="WHITE" />
+                        <Button fx:id="sendbutton" layoutX="969.0" layoutY="558.0" mnemonicParsing="false" prefWidth="90.0" styleClass="bb" stylesheets="@Stylesheet.css" text="SEND ORDER" textFill="WHITE" />
                      </children>
                   </AnchorPane>
             </content>
@@ -106,13 +106,13 @@
                               <TableColumn fx:id="destinationPostCode" prefWidth="132.7999267578125" text="Destination Postcode" />
                               <TableColumn fx:id="pickUpLocation" prefWidth="124.79998779296875" text="Pickup Location " />
                               <TableColumn fx:id="isHazardous" minWidth="0.0" prefWidth="84.0" text="Hazardous" />
-                              <TableColumn prefWidth="100.0" text="Status" />
-                              <TableColumn prefWidth="119.19989013671875" text="Total Price" />
+                              <TableColumn fx:id="customerOrderStatus" prefWidth="100.0" text="Status" />
+                              <TableColumn fx:id="totalPrice" prefWidth="119.19989013671875" text="Total Price" />
                           </columns>
                         </TableView>
                         <Label layoutX="14.0" layoutY="19.0" text="SENT QUOTATIONS" textFill="WHITE" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="19.0" />
-                        <Button layoutX="981.0" layoutY="572.0" mnemonicParsing="false" prefWidth="90.0" styleClass="bb" stylesheets="@Stylesheet.css" text="ACCEPT" textFill="WHITE" />
-                        <Button layoutX="867.0" layoutY="572.0" mnemonicParsing="false" prefWidth="90.0" styleClass="bb" stylesheets="@Stylesheet.css" text="DECLINE" textFill="WHITE" />
+                        <Button layoutX="981.0" layoutY="572.0" mnemonicParsing="false" onAction="#acceptButton" prefWidth="90.0" styleClass="bb" stylesheets="@Stylesheet.css" text="ACCEPT" textFill="WHITE" />
+                        <Button layoutX="867.0" layoutY="572.0" mnemonicParsing="false" onAction="#declineButton" prefWidth="90.0" styleClass="bb" stylesheets="@Stylesheet.css" text="DECLINE" textFill="WHITE" />
                      </children>
                   </AnchorPane>
             </content>

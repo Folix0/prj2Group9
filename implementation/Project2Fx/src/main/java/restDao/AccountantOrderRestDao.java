@@ -71,8 +71,7 @@ public class AccountantOrderRestDao implements DAOlite<AccountantOrder> {
 
         AccountantOrderRestDao ar = new AccountantOrderRestDao();
         System.out.println(ar.get(1));
-
-
+        
     }
 
     @POST
@@ -219,8 +218,8 @@ public class AccountantOrderRestDao implements DAOlite<AccountantOrder> {
     }
 
     @Override
-    public AccountantOrder update(AccountantOrder accountantOrder) {
-        return null;
+    public void update(AccountantOrder accountantOrder) {
+
     }
 
     @Override

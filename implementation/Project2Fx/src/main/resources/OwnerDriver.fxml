@@ -2,16 +2,23 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="1100.0" minHeight="-Infinity" minWidth="1100.0" prefHeight="650.0" prefWidth="1100.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Fx.MainFx">
+<BorderPane maxHeight="-Infinity" maxWidth="1100.0" minHeight="-Infinity" minWidth="1100.0" prefHeight="650.0" prefWidth="1100.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Fx.DriverController">
    <top>
       <Label alignment="CENTER" text="DRIVER" textFill="WHITE" BorderPane.alignment="CENTER">
          <font>
@@ -31,47 +38,131 @@
    <center>
       <TabPane prefHeight="200.0" prefWidth="200.0" stylesheets="@Stylesheet.css" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab text="INFORMATION">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <Tab text="PICKUP INFORMATION">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutX="52.0" layoutY="72.0" prefHeight="543.2" prefWidth="900.0" stylesheets="@Stylesheet.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                          <columns>
-                            <TableColumn prefWidth="135.2000488281251" text="Truck License Plate" />
-                            <TableColumn prefWidth="130.39996337890625" text="Trailer License Plate" />
-                              <TableColumn prefWidth="169.60003662109375" text="Trailer Pickup Location" />
-                              <TableColumn minWidth="2.39996337890625" prefWidth="92.7999267578125" text="Type" />
-                              <TableColumn minWidth="2.39996337890625" prefWidth="162.39990234375" text="Load Location" />
-                              <TableColumn minWidth="2.39996337890625" prefWidth="117.60009765625" text="Load Amount" />
-                              <TableColumn minWidth="2.39996337890625" prefWidth="163.1998291015625" text="Hazardous" />
-                              <TableColumn minWidth="2.39996337890625" prefWidth="316.80029296875" />
-                          </columns>
+                        <TableView fx:id="PickupInformation" layoutX="52.0" layoutY="72.0" prefHeight="540.0" prefWidth="1100.0" stylesheets="@Stylesheet.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+                           <columns>
+                              <TableColumn fx:id="TruckLicenceD1" prefWidth="155.99999694824237" text="Truck License Plate" />
+                              <TableColumn fx:id="TrailerLicenceD1" prefWidth="155.2000274658203" text="Trailer License Plate" />
+                              <TableColumn fx:id="TrailerPickupD1" prefWidth="188.0" text="Trailer Pickup Location" />
+                              <TableColumn fx:id="LoadAmountD1" minWidth="2.39996337890625" prefWidth="194.4000244140625" text="Load Amount" />
+                              <TableColumn fx:id="HazardousD" minWidth="2.39996337890625" prefWidth="159.199951171875" text="Hazardous Liquid" />
+                              <TableColumn fx:id="trailerCleaned" minWidth="2.39996337890625" prefWidth="245.60003662109375" text="Trailer Cleaned" />
+                           </columns>
                            <padding>
                               <Insets bottom="15.0" />
                            </padding>
                         </TableView>
                      </children>
                   </AnchorPane>
-            </content>
-          </Tab>
-          <Tab text="DELIVERY">
+               </content>
+            </Tab>
+          <Tab text="DELIVERY DETAILS">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="458.0" prefWidth="1100.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutX="40.0" layoutY="72.0" prefHeight="525.0" prefWidth="1100.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="DeliveryDetails" layoutX="52.0" layoutY="72.0" prefHeight="540.0" prefWidth="686.0" stylesheets="@Stylesheet.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="414.0" AnchorPane.topAnchor="35.0">
                           <columns>
-                              <TableColumn prefWidth="300.0" text="Delivery Address" />
-                              <TableColumn prefWidth="110.0" text="Delivery Postcode" />
-                              <TableColumn prefWidth="190.39990234375" text="Delivery Date" />
-                              <TableColumn prefWidth="124.0001220703125" />
-                              <TableColumn minWidth="9.5999755859375" prefWidth="375.20001220703125" />
+                              <TableColumn fx:id="deliveryAddressD" minWidth="0.0" prefWidth="207.20003967285174" text="Delivery Address" />
+                              <TableColumn fx:id="DeliveryPostcodeD" minWidth="2.39996337890625" prefWidth="234.40000915527344" text="Delivery Postcode" />
+                              <TableColumn fx:id="DeliveryDateD" minWidth="2.39996337890625" prefWidth="245.5999755859375" text="Delivery Date" />
                           </columns>
                            <padding>
                               <Insets bottom="15.0" />
                            </padding>
                         </TableView>
-                        <Button id="bb" fx:id="sendb" layoutX="1007.0" layoutY="533.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" styleClass="bb" stylesheets="@Stylesheet.css" text="FINISH" textFill="WHITE" />
-                        <Button id="bb" fx:id="sendb1" layoutX="910.0" layoutY="533.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="78.0" styleClass="bb" stylesheets="@Stylesheet.css" text="INCIDENT" textFill="WHITE" />
+                        <Button fx:id="finsihDeliveryBtn" layoutX="973.0" layoutY="523.0" mnemonicParsing="false" styleClass="bb" stylesheets="@Stylesheet.css" text="Finish Delivery" textFill="#fdfdfd" />
+                        <StackPane layoutX="767.0" layoutY="52.0" prefHeight="150.0" prefWidth="300.0">
+                           <children>
+                              <AnchorPane fx:id="timerPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;">
+                                 <children>
+                                    <GridPane prefHeight="150.0" prefWidth="300.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="91.9999755859375" minHeight="10.0" prefHeight="73.60001220703126" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="45.60001220703124" minHeight="8.800024414062477" prefHeight="27.19998779296874" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Hours" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Minutes" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Seconds" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+                                          <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: white;" GridPane.rowIndex="1">
+                                             <GridPane.margin>
+                                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                             </GridPane.margin>
+                                             <children>
+                                                <Text fx:id="Hours" fill="WHITE" layoutX="13.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
+                                                   <font>
+                                                      <Font size="39.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <GridPane.margin>
+                                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                             </GridPane.margin>
+                                             <children>
+                                                <Text fx:id="Minutes" fill="WHITE" layoutX="13.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
+                                                   <font>
+                                                      <Font size="39.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: white;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                             <GridPane.margin>
+                                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                             </GridPane.margin>
+                                             <children>
+                                                <Text fx:id="Seconds" fill="WHITE" layoutX="13.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
+                                                   <font>
+                                                      <Font size="39.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </AnchorPane>
+                                          <Button fx:id="Cancel" mnemonicParsing="false" onAction="#cancelButton" prefWidth="94.4" styleClass="dbutton" stylesheets="@Stylesheet.css" text="Cancel" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane fx:id="menuPane" prefHeight="150.0" prefWidth="300.0" style="-fx-background-color: black;">
+                                 <children>
+                                    <GridPane prefHeight="150.0" prefWidth="300.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Hours" GridPane.halignment="LEFT" />
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Minutes" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Seconds" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+                                          <ComboBox fx:id="inputH" prefWidth="150.0" style="-fx-background-color: black; -fx-border-color: white;" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                                          <ComboBox fx:id="inputM" prefWidth="150.0" style="-fx-background-color: black; -fx-border-color: white;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                          <ComboBox fx:id="inputS" prefWidth="150.0" style="-fx-background-color: black; -fx-border-color: white;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                                          <Button fx:id="Start" mnemonicParsing="false" onAction="#startButton" prefWidth="94.4" styleClass="dbutton" stylesheets="@Stylesheet.css" text="Start" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </StackPane>
+                        <Separator layoutX="767.0" layoutY="34.0" prefHeight="0.0" prefWidth="334.0" styleClass="s" stylesheets="@Stylesheet.css" />
+                        <Label layoutX="767.0" layoutY="12.0" text="Delivery Timer" textFill="WHITE" />
                      </children>
                   </AnchorPane>
             </content>

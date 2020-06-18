@@ -4,10 +4,10 @@ import java.time.LocalDate;
 
 public class CustomerOrder {
 
-    private int customerOrderId;
-    private String firstName;
+    private final int customerOrderId;
+    private final String firstName;
     private String lastName;
-    private LocalDate birthDate;
+    private final LocalDate birthDate;
     private String email;
     private String phoneNumber;
     private String address;
@@ -18,44 +18,7 @@ public class CustomerOrder {
     private LocalDate deliveryDate;
     private boolean hazardous;
     private double proposedPrice;
-    //private String orderStatus;
     private String orderStatus;
-
-    public CustomerOrder() {
-    }
-
-    public CustomerOrder(int customerOrderId,String email, String pickUpAddress, String destinationAddress, String postcode,
-                         double amount, LocalDate deliveryDate, boolean hazardous, double proposedPrice) {
-        this.customerOrderId = customerOrderId;
-        this.email = email;
-        this.pickUpAddress = pickUpAddress;
-        this.destinationAddress = destinationAddress;
-        this.postcode = postcode;
-        this.amount = amount;
-        this.deliveryDate = deliveryDate;
-        this.hazardous = hazardous;
-        this.proposedPrice = proposedPrice;
-    }
-
-    public CustomerOrder(String firstName, String lastName, LocalDate birthDate, String email, String phoneNumber,
-                         String address, String pickUpAddress, String destinationAddress, String postcode, double amount,
-                         LocalDate deliveryDate, boolean hazardous, double proposedPrice, String orderStatus) {
-
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.address = address;
-        this.pickUpAddress = pickUpAddress;
-        this.destinationAddress = destinationAddress;
-        this.postcode = postcode;
-        this.amount = amount;
-        this.deliveryDate = deliveryDate;
-        this.hazardous = hazardous;
-        this.proposedPrice = proposedPrice;
-        this.orderStatus = orderStatus;
-    }
 
     public CustomerOrder(int customerOrderId, String firstName, String lastName, LocalDate birthDate, String email,
                          String phoneNumber, String address, String pickUpAddress, String destinationAddress,
@@ -78,40 +41,13 @@ public class CustomerOrder {
         this.orderStatus = orderStatus;
     }
 
-    public CustomerOrder(int customerOrderId, String firstName, String lastName, LocalDate birthDate, String email,
-                         String phoneNumber, String address, String pickUpAddress, String destinationAddress,
-                         String postcode, double amount, LocalDate deliveryDate, boolean hazardous, double proposedPrice) {
-        this.customerOrderId = customerOrderId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.address = address;
-        this.pickUpAddress = pickUpAddress;
-        this.destinationAddress = destinationAddress;
-        this.postcode = postcode;
-        this.amount = amount;
-        this.deliveryDate = deliveryDate;
-        this.hazardous = hazardous;
-        this.proposedPrice = proposedPrice;
-    }
-
 
     public int getCustomerOrderId() {
         return customerOrderId;
     }
 
-    public void setCustomerOrderId(int customerOrderId) {
-        this.customerOrderId = customerOrderId;
-    }
-
     public String getFirstName() {
         return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -124,10 +60,6 @@ public class CustomerOrder {
 
     public LocalDate getBirthDate() {
         return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
     }
 
     public String getEmail() {

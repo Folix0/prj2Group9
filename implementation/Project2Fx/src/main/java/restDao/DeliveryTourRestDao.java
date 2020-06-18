@@ -112,8 +112,8 @@ public class DeliveryTourRestDao implements DAOlite<DeliveryTour>{
     }
 
     @Override
-    public DeliveryTour update(DeliveryTour deliveryTour) {
-        return null;
+    public void update(DeliveryTour deliveryTour) {
+
     }
 
     @Override

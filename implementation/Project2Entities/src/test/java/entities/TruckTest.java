@@ -1,93 +1,93 @@
-/*package entities;
+package entities;
 
-import org.junit.Before;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.time.LocalDate;
 
-import static org.junit.Assert.*;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 public class TruckTest {
+    private Truck truck = new Truck(1, "KF-12", true, 1200.50, 124,
+            "Street123", LocalDate.of(2020, 1, 24));
 
-
-    Truck truck;
-
-    @Before
-    public void setUp() throws Exception {
-        truck = new Truck("KF-12", 1, true, 1200.50, 124,
-                "Street123", LocalDate.of(2020, 01, 24));
+    @Test
+    public void getTruckIdTest() {
+        assertThat(truck.getId()).isEqualTo(1);
     }
 
+    @Test
+    public void setTruckIdTest() {
+        truck.setId(1);
+        assertThat(truck.getId()).isEqualTo(1);
+    }
 
     @Test
     public void getTruckLicencePlateTest() {
         assertThat(truck.getTruckLicensePlate()).isEqualTo("KF-12");
     }
 
-
     @Test
-    public void getTruckIdTest() {
-        assertThat(truck.getTruckId()).isEqualTo(1);
+    public void isAvailableTest() {
+        assertThat(truck.isAvailable()).isEqualTo(true);
     }
 
     @Test
-    public void setTruckIdTest() {
-        truck.setTruckId(1);
-        assertThat(truck.getTruckId()).isEqualTo(1);
+    public void setAvailableTest() {
+        truck.setAvailable(true);
+        assertThat(truck.isAvailable()).isEqualTo(true);
     }
 
     @Test
-    void getTruckWeightTest() {
-        assertThat(t.getTruckWeight()).isEqualTo(5000.1);
+    public void getTruckWeightTest() {
+        assertThat(truck.getTruckWeight()).isEqualTo(1200.5);
     }
 
     @Test
-    void isAvailableTest() {
-        assertThat(t.isAvailable()).isEqualTo(true);
+    public void getMileageTest() {
+        assertThat(truck.getMileage()).isEqualTo(124);
     }
 
     @Test
-    void setAvailableTest() {
-        t.setAvailable(true);
-        assertThat(t.isAvailable()).isEqualTo(true);
+    public void setMileageTest() {
+        truck.setMileage(235);
+        assertThat(truck.getMileage()).isEqualTo(235);
     }
 
     @Test
-    void getMaintenanceCheckDateTest() {
-        assertThat(t.getMaintenanceCheckDate()).isEqualTo(LocalDate.of(1999, 11, 11));
+    public void getTruckPickupLocationTest() {
+        assertThat(truck.getTruckPickupLocation()).isEqualTo("Street123");
     }
 
     @Test
-    void setMaintenanceCheckDateTest() {
-        t.setMaintenanceCheckDate(LocalDate.of(1999, 11, 11));
-        assertThat(t.getMaintenanceCheckDate()).isEqualTo(LocalDate.of(1999, 11, 11));
+    public void setTruckPickupLocationTest() {
+        truck.setTruckPickupLocation("Street555");
+        assertThat(truck.getTruckPickupLocation()).isEqualTo("Street555");
     }
 
     @Test
-    void getMileageTest() {
-        assertThat(t.getMileage()).isEqualTo(235);
+    public void getMaintenanceCheckDateTest() {
+        assertThat(truck.getMaintenanceCheckdate()).isEqualTo(LocalDate.of(2020, 01, 24));
     }
 
     @Test
-    void setMileageTest() {
-        t.setMileage(235);
-        assertThat(t.getMileage()).isEqualTo(235);
+    public void setMaintenanceCheckDateTest() {
+        truck.setMaintenanceCheckdate(LocalDate.of(1999, 11, 11));
+        assertThat(truck.getMaintenanceCheckdate()).isEqualTo(LocalDate.of(1999, 11, 11));
     }
 
     @Test
-    void getHazardousTest() {
-        assertThat(t.isHazardous()).isEqualTo(true);
-        Truck t1 = new Truck(555.5, true, LocalDate.of(1999, 11, 11), 235, false);
-        assertThat(t1.isHazardous()).isEqualTo(false);
-
+    public void testToString()
+    {
+        String expected = "Truck{" +
+                "id=" + truck.getId() +
+                ", truckLicensePlate='" + truck.getTruckLicensePlate() + '\'' +
+                ", isAvailable=" + truck.isAvailable() +
+                ", truckWeight=" + truck.getTruckWeight() +
+                ", mileage=" + truck.getMileage() +
+                ", truckPickupLocation='" + truck.getTruckPickupLocation() + '\'' +
+                ", maintenanceCheckdate=" + truck.getMaintenanceCheckdate() +
+                '}';
+        Assert.assertEquals(expected, truck.toString());
     }
-
-    @Test
-    void constructorTest() {
-        Truck t1 = new Truck(555.5, true, LocalDate.of(1999, 11, 11), 235, true);
-        assertThat(t1.getTruckWeight()).isEqualTo(5000);
-        Truck t2 = new Truck(20000.0, true, LocalDate.of(1999, 11, 11), 235, true);
-        assertThat(t2.getTruckWeight()).isEqualTo(15000.0);
-    }
-}*/
+}

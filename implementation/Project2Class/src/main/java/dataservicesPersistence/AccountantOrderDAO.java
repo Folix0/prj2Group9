@@ -46,7 +46,8 @@ public class AccountantOrderDAO implements DAOlite<AccountantOrder, Integer> {
                     double totalPrice = rs.getDouble("totalprice");
 
 
-                    accountantOrder = Optional.of(new AccountantOrder(id, customerId, amount, destinationAddress, destinationPostcode, pickupAddress, deliveryDate, hazardous, email, totalPrice));
+                    accountantOrder = Optional.of(new AccountantOrder(id, customerId, amount, destinationAddress,
+                            destinationPostcode, pickupAddress, deliveryDate, hazardous, email, totalPrice));
 
                     LOGGER.log(Level.INFO, "Found {0} in database", accountantOrder.get());
                 }
@@ -81,7 +82,8 @@ public class AccountantOrderDAO implements DAOlite<AccountantOrder, Integer> {
                     double totalPrice = rs.getDouble("totalprice");
 
 
-                    AccountantOrder user = new AccountantOrder(id, customerId, amount, destinationAddress, destinationPostcode, pickupAddress, deliveryDate, hazardous, email, totalPrice);
+                    AccountantOrder user = new AccountantOrder(id, customerId, amount, destinationAddress,
+                            destinationPostcode, pickupAddress, deliveryDate, hazardous, email, totalPrice);
 
                     accountantOrders.add(user);
 
@@ -101,15 +103,16 @@ public class AccountantOrderDAO implements DAOlite<AccountantOrder, Integer> {
         String message = "The customer to be added should not be null";
         AccountantOrder nonNullUser = Objects.requireNonNull(accountantOrder, message);
         String sql = "INSERT INTO "
-                + "accountantorder(customerid,amount,destinationaddress,destinationpostcode,pickupaddress,deliverydate,hazardous,email,totalprice)"
+                + "accountantorder(customerid,amount,destinationaddress,destinationpostcode,pickupaddress," +
+                "deliverydate,hazardous,email,totalprice)"
                 + "VALUES(?,?,?,?,?,?,?,?,?)";
 
         return connection.flatMap(conn -> {
             Optional<Integer> generatedId = Optional.empty();
 
             try (PreparedStatement statement = conn.prepareStatement(sql,
-                    Statement.RETURN_GENERATED_KEYS)) {
-
+                    Statement.RETURN_GENERATED_KEYS))
+            {
                 statement.setInt(1, nonNullUser.getCustomerId());
                 statement.setDouble(2, nonNullUser.getAmount());
                 statement.setString(3, nonNullUser.getDestinationAddress());
@@ -120,13 +123,14 @@ public class AccountantOrderDAO implements DAOlite<AccountantOrder, Integer> {
                 statement.setString(8, nonNullUser.getEmail());
                 statement.setDouble(9, nonNullUser.getTotalPrice());
 
-
                 int numberOfInsertedRows = statement.executeUpdate();
 
                 //Retrieve the auto-generated id
                 if (numberOfInsertedRows > 0) {
-                    try (ResultSet resultSet = statement.getGeneratedKeys()) {
-                        if (resultSet.next()) {
+                    try (ResultSet resultSet = statement.getGeneratedKeys())
+                    {
+                        if (resultSet.next())
+                        {
                             generatedId = Optional.of(resultSet.getInt(1));
                         }
                     }
@@ -134,7 +138,8 @@ public class AccountantOrderDAO implements DAOlite<AccountantOrder, Integer> {
 
                 LOGGER.log(Level.INFO, "{0} created successfully? {1}",
                         new Object[]{nonNullUser, numberOfInsertedRows > 0});
-            } catch (SQLException ex) {
+            }
+            catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }
 
@@ -161,7 +166,8 @@ public class AccountantOrderDAO implements DAOlite<AccountantOrder, Integer> {
                 + "orderid = ?";
 
         connection.ifPresent(conn -> {
-            try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            try (PreparedStatement statement = conn.prepareStatement(sql))
+            {
 
                 statement.setInt(1, nonNullUser.getCustomerId());
                 statement.setDouble(2, nonNullUser.getAmount());
@@ -179,7 +185,8 @@ public class AccountantOrderDAO implements DAOlite<AccountantOrder, Integer> {
                 LOGGER.log(Level.INFO, "Was the customer updated successfully? {0}",
                         numberOfUpdatedRows > 0);
 
-            } catch (SQLException ex) {
+            }
+            catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }
         });
@@ -193,16 +200,15 @@ public class AccountantOrderDAO implements DAOlite<AccountantOrder, Integer> {
         String sql = "DELETE FROM accountantorder WHERE orderid = ?";
 
         connection.ifPresent(conn -> {
-            try (PreparedStatement statement = conn.prepareStatement(sql)) {
-
+            try (PreparedStatement statement = conn.prepareStatement(sql))
+            {
                 statement.setInt(1, nonNullUser.getOrderId());
-
                 int numberOfDeletedRows = statement.executeUpdate();
 
                 LOGGER.log(Level.INFO, "Was the customer deleted successfully? {0}",
                         numberOfDeletedRows > 0);
-
-            } catch (SQLException ex) {
+            }
+            catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }
         });

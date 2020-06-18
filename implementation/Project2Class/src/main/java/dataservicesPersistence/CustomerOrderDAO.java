@@ -20,17 +20,22 @@ public class CustomerOrderDAO implements DAOlite<CustomerOrder, Integer> {
         this.connection = JdbcConnection.getConnection();
     }
 
+    /**
+     * @param id
+     * @return
+     * is used to return a specific entry  out of the database
+     * the entry which should be retrievd is specified as parameter
+     */
     @Override
     public Optional<CustomerOrder> get(int id) {
         return connection.flatMap(conn -> {
             Optional<CustomerOrder> customerOrder = Optional.empty();
             String sql = "SELECT * FROM customerorder WHERE id = " + id;
 
-            try (Statement statement = conn.createStatement()){
-                 ResultSet rs = statement.executeQuery(sql);
+            try (Statement statement = conn.createStatement()) {
+                ResultSet rs = statement.executeQuery(sql);
 
                 if (rs.next()) {
-
                     int customerId = rs.getInt("id");
                     String firstName = rs.getString("firstname");
                     String lastName = rs.getString("lastname");
@@ -47,12 +52,11 @@ public class CustomerOrderDAO implements DAOlite<CustomerOrder, Integer> {
                     double proposedPrice = rs.getDouble("proposedprice");
                     String orderStatus = rs.getString("orderstatus");
 
-
                     customerOrder = Optional.of(new CustomerOrder(customerId, firstName, lastName,
                             birthDate, email, phoneNumber, address, pickupAddress, destinationAddress,
                             destinationPostcode, amount, deliveryDate, isHazardous, proposedPrice, orderStatus));
 
-                    LOGGER.log(Level.INFO, "Found {0} in database", customerOrder.get());
+                    LOGGER.log(Level.INFO, "Found {0} in database", customerOrder.get()); //optional get
                 }
             } catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
@@ -63,6 +67,11 @@ public class CustomerOrderDAO implements DAOlite<CustomerOrder, Integer> {
     }
 
 
+    /**
+     * @return
+     * is used to return all data/entries from the customerorder table
+     * returns a arraylist in which all the retireved data are stored
+     */
     @Override
     public Collection<CustomerOrder> getAll() {
         List<CustomerOrder> customerOrders = new ArrayList<>();
@@ -71,7 +80,6 @@ public class CustomerOrderDAO implements DAOlite<CustomerOrder, Integer> {
         connection.ifPresent(conn -> {
             try (Statement statement = conn.createStatement();
                  ResultSet rs = statement.executeQuery(sql)) {
-
                 while (rs.next()) {
 
                     int customerId = rs.getInt("id");
@@ -90,12 +98,11 @@ public class CustomerOrderDAO implements DAOlite<CustomerOrder, Integer> {
                     double proposedPrice = rs.getDouble("proposedprice");
                     String orderStatus = rs.getString("orderstatus");
 
-
-                    CustomerOrder customer = new CustomerOrder(customerId, firstName, lastName,
+                    CustomerOrder customerOrder = new CustomerOrder(customerId, firstName, lastName,
                             birthDate, email, phoneNumber, address, pickupAddress, destinationAddress,
                             destinationPostcode, amount, deliveryDate, isHazardous, proposedPrice, orderStatus);
 
-                    customerOrders.add(customer);
+                    customerOrders.add(customerOrder);
 
                     LOGGER.log(Level.INFO, "Found {0} in database", customerOrders);
                 }
@@ -109,6 +116,14 @@ public class CustomerOrderDAO implements DAOlite<CustomerOrder, Integer> {
     }
 
 
+    /**
+     * @param customerOrder
+     * @return
+     * is used to save an entry into the database, in this case a customer order
+     * automatically generates id
+     *
+     *
+     */
     @Override
     public Optional<Integer> save(CustomerOrder customerOrder) {
         String message = "The Customer to be added should not be null";
@@ -140,12 +155,12 @@ public class CustomerOrderDAO implements DAOlite<CustomerOrder, Integer> {
                 statement.setDouble(13, nonNullUser.getProposedPrice());
                 statement.setString(14, nonNullUser.getOrderStatus());
 
-
                 int numberOfInsertedRows = statement.executeUpdate();
 
                 //Retrieve the auto-generated id
                 if (numberOfInsertedRows > 0) {
                     try (ResultSet resultSet = statement.getGeneratedKeys()) {
+
                         if (resultSet.next()) {
                             generatedId = Optional.of(resultSet.getInt(1));
                         }
@@ -154,6 +169,7 @@ public class CustomerOrderDAO implements DAOlite<CustomerOrder, Integer> {
 
                 LOGGER.log(Level.INFO, "{0} created successfully? {1}",
                         new Object[]{nonNullUser, numberOfInsertedRows > 0});
+
             } catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }
@@ -164,15 +180,17 @@ public class CustomerOrderDAO implements DAOlite<CustomerOrder, Integer> {
 
     @Override
     public void update(CustomerOrder customerOrder) {
+        System.out.println("SSSSSSSSSS");
         String message = "The Customer to be updated should not be null";
         CustomerOrder nonNullUser = Objects.requireNonNull(customerOrder, message);
         String sql = "UPDATE customerorder "
                 + "SET "
                 + "firstname = ?, "
                 + "lastname = ?, "
+                + "birthdate = ?, "
                 + "email = ?, "
                 + "phonenumber = ?, "
-                + "address = ? "
+                + "address = ?, "
                 + "orderamount = ?, "
                 + "destinationaddress = ?, "
                 + "destinationpostcode = ?, "
@@ -201,18 +219,15 @@ public class CustomerOrderDAO implements DAOlite<CustomerOrder, Integer> {
                 statement.setBoolean(12, nonNullUser.isHazardous());
                 statement.setDouble(13, nonNullUser.getProposedPrice());
                 statement.setString(14, nonNullUser.getOrderStatus());
-
                 statement.setInt(15, nonNullUser.getCustomerOrderId());
 
-                int numberOfUpdatedRows = statement.executeUpdate();
-
-                LOGGER.log(Level.INFO, "Was the Customer updated successfully? {0}",
-                        numberOfUpdatedRows > 0);
+                statement.execute();
 
             } catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }
         });
+        System.out.println("SSSSSSSSSSS");
     }
 
 

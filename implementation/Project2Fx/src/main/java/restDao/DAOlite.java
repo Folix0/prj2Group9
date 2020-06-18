@@ -18,7 +18,7 @@ public interface DAOlite<T> {
 
     Optional<Collection<T>> getAll();
 
-    T update(T e);
+    void update(T e);
 
     void delete(int id);
 }

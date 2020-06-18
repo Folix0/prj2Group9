@@ -41,10 +41,13 @@ public class TruckDAO implements DAOlite<Truck, Integer> {
                     LocalDate maintenanceCheckdate = rs.getDate("maintenancecheckdate").toLocalDate();
 
 
-                    truck = Optional.of(new Truck(truckId, licensePlate, isAvailable, truckWeight, mileage, pickupLocation, maintenanceCheckdate));
+                    truck = Optional.of(new Truck(truckId, licensePlate, isAvailable, truckWeight, mileage,
+                            pickupLocation, maintenanceCheckdate));
+
                     LOGGER.log(Level.INFO, "Found {0} in database", truck.get());
                 }
-            } catch (SQLException ex) {
+            }
+            catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }
 
@@ -72,14 +75,16 @@ public class TruckDAO implements DAOlite<Truck, Integer> {
                     LocalDate maintenanceCheckdate = rs.getDate("maintenancecheckdate").toLocalDate();
 
 
-                    Truck truck = new Truck(truckId, licensePlate, isAvailable, truckWeight, mileage, pickupLocation, maintenanceCheckdate);
+                    Truck truck = new Truck(truckId, licensePlate, isAvailable, truckWeight, mileage,
+                            pickupLocation, maintenanceCheckdate);
 
                     trucks.add(truck);
 
                     LOGGER.log(Level.INFO, "Found {0} in database", trucks);
                 }
 
-            } catch (SQLException ex) {
+            }
+            catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }
         });
@@ -121,7 +126,8 @@ public class TruckDAO implements DAOlite<Truck, Integer> {
 
                 LOGGER.log(Level.INFO, "{0} created successfully? {1}",
                         new Object[]{nonNullUser, numberOfInsertedRows > 0});
-            } catch (SQLException ex) {
+            }
+            catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }
 
@@ -146,7 +152,8 @@ public class TruckDAO implements DAOlite<Truck, Integer> {
                 + "id = ?";
 
         connection.ifPresent(conn -> {
-            try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            try (PreparedStatement statement = conn.prepareStatement(sql))
+            {
 
                 statement.setString(1, nonNullUser.getTruckLicensePlate());
                 statement.setString(2, nonNullUser.getTruckPickupLocation());
@@ -162,7 +169,8 @@ public class TruckDAO implements DAOlite<Truck, Integer> {
                 LOGGER.log(Level.INFO, "Was the Truck updated successfully? {0}",
                         numberOfUpdatedRows > 0);
 
-            } catch (SQLException ex) {
+            }
+            catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }
         });
@@ -177,7 +185,8 @@ public class TruckDAO implements DAOlite<Truck, Integer> {
         String sql = "DELETE FROM truck WHERE id = ?";
 
         connection.ifPresent(conn -> {
-            try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            try (PreparedStatement statement = conn.prepareStatement(sql))
+            {
 
                 statement.setInt(1, nonNullUser.getId());
 
@@ -186,7 +195,8 @@ public class TruckDAO implements DAOlite<Truck, Integer> {
                 LOGGER.log(Level.INFO, "Was the Truck deleted successfully? {0}",
                         numberOfDeletedRows > 0);
 
-            } catch (SQLException ex) {
+            }
+            catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }
         });

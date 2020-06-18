@@ -27,7 +27,8 @@ public class TrailerDAO implements DAOlite<Trailer, Integer> {
             String sql = "SELECT * FROM trailer WHERE id = " + id;
 
             try (Statement statement = conn.createStatement();
-                 ResultSet rs = statement.executeQuery(sql)) {
+                 ResultSet rs = statement.executeQuery(sql))
+            {
 
                 if (rs.next()) {
 
@@ -46,6 +47,7 @@ public class TrailerDAO implements DAOlite<Trailer, Integer> {
                             capacity, pickupLocation, maintenanceCheckdate, trailerWeight));
                     LOGGER.log(Level.INFO, "Found {0} in database", trailer.get());
                 }
+
             } catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }
@@ -61,7 +63,8 @@ public class TrailerDAO implements DAOlite<Trailer, Integer> {
 
         connection.ifPresent(conn -> {
             try (Statement statement = conn.createStatement();
-                 ResultSet rs = statement.executeQuery(sql)) {
+                 ResultSet rs = statement.executeQuery(sql))
+            {
 
                 while (rs.next()) {
                     int trailerId = rs.getInt("id");
@@ -83,7 +86,8 @@ public class TrailerDAO implements DAOlite<Trailer, Integer> {
                     LOGGER.log(Level.INFO, "Found {0} in database", trailers);
                 }
 
-            } catch (SQLException ex) {
+            }
+            catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }
         });
@@ -104,7 +108,8 @@ public class TrailerDAO implements DAOlite<Trailer, Integer> {
             Optional<Integer> generatedId = Optional.empty();
 
             try (PreparedStatement statement = conn.prepareStatement(sql,
-                    Statement.RETURN_GENERATED_KEYS)) {
+                    Statement.RETURN_GENERATED_KEYS))
+            {
 
                 statement.setString(1, nonNullUser.getTrailerLicencePlate());
                 statement.setString(2, nonNullUser.getTrailerPickupLocation());
@@ -128,7 +133,8 @@ public class TrailerDAO implements DAOlite<Trailer, Integer> {
 
                 LOGGER.log(Level.INFO, "{0} created successfully? {1}",
                         new Object[]{nonNullUser, numberOfInsertedRows > 0});
-            } catch (SQLException ex) {
+            }
+            catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }
 
@@ -154,7 +160,8 @@ public class TrailerDAO implements DAOlite<Trailer, Integer> {
                 + "id = ?";
 
         connection.ifPresent(conn -> {
-            try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            try (PreparedStatement statement = conn.prepareStatement(sql))
+            {
 
                 statement.setString(1, nonNullUser.getTrailerLicencePlate());
                 statement.setString(2, nonNullUser.getTrailerPickupLocation());
@@ -172,7 +179,8 @@ public class TrailerDAO implements DAOlite<Trailer, Integer> {
                 LOGGER.log(Level.INFO, "Was the Trailer updated successfully? {0}",
                         numberOfUpdatedRows > 0);
 
-            } catch (SQLException ex) {
+            }
+            catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }
         });
@@ -186,7 +194,8 @@ public class TrailerDAO implements DAOlite<Trailer, Integer> {
         String sql = "DELETE FROM trailer WHERE id = ?";
 
         connection.ifPresent(conn -> {
-            try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            try (PreparedStatement statement = conn.prepareStatement(sql))
+            {
 
                 statement.setInt(1, nonNullUser.getId());
 
@@ -195,7 +204,8 @@ public class TrailerDAO implements DAOlite<Trailer, Integer> {
                 LOGGER.log(Level.INFO, "Was the Trailer deleted successfully? {0}",
                         numberOfDeletedRows > 0);
 
-            } catch (SQLException ex) {
+            }
+            catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }
         });

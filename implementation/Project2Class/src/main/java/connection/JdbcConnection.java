@@ -12,6 +12,10 @@ public class JdbcConnection {
     private static final Logger LOGGER = Logger.getLogger(JdbcConnection.class.getName());
     private static Optional<Connection> connection = Optional.empty();
 
+    /**
+     * @return
+     * establishes a connection to the database with the given data source
+     */
     public static Optional<Connection> getConnection() {
         if (connection.isEmpty()) {
             String url = "jdbc:postgresql://localhost:5432/postgres";

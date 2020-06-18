@@ -15,22 +15,6 @@ public class Trailer {
     private LocalDate maintenanceCheckdate;
     private double trailerWeight;
 
-    public Trailer() {
-
-    }
-
-    public Trailer(String trailerLicencePlate, boolean isCleaned, boolean isAvailable, boolean isHazardous,
-                   double capacity, String trailerPickupLocation, LocalDate maintenanceCheckdate, double trailerWeight) {
-        this.isCleaned = isCleaned;
-        this.trailerLicencePlate = trailerLicencePlate;
-        this.isAvailable = isAvailable;
-        this.isHazardous = isHazardous;
-        this.capacity = capacity;
-        this.trailerPickupLocation = trailerPickupLocation;
-        this.maintenanceCheckdate = maintenanceCheckdate;
-        this.trailerWeight = trailerWeight;
-    }
-
     public Trailer(int id, String trailerLicencePlate, boolean isCleaned, boolean isAvailable, boolean isHazardous,
                    double capacity, String trailerPickupLocation, LocalDate maintenanceCheckdate, double trailerWeight) {
         this.id = id;
@@ -44,9 +28,7 @@ public class Trailer {
         this.trailerWeight = trailerWeight;
     }
 
-    public int getId() {
-        return id;
-    }
+    public int getId() { return id; }
 
     public void setId(int id) {
         this.id = id;

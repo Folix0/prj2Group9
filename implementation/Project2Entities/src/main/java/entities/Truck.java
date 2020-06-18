@@ -12,19 +12,6 @@ public class Truck {
     private String truckPickupLocation;
     private LocalDate maintenanceCheckdate;
 
-    public Truck(){
-
-    }
-
-    public Truck(String truckLicensePlate, boolean isAvailable, double truckWeight, int mileage,
-                 String truckPickupLocation, LocalDate maintenanceCheckdate) {
-        this.truckLicensePlate = truckLicensePlate;
-        this.isAvailable = isAvailable;
-        this.truckWeight = truckWeight;
-        this.mileage = mileage;
-        this.truckPickupLocation = truckPickupLocation;
-        this.maintenanceCheckdate = maintenanceCheckdate;
-    }
     public Truck(int id,String truckLicensePlate, boolean isAvailable, double truckWeight, int mileage,
                  String truckPickupLocation, LocalDate maintenanceCheckdate) {
         this.id=id;
@@ -48,10 +35,6 @@ public class Truck {
         return truckLicensePlate;
     }
 
-    public void setTruckLicensePlate(String truckLicensePlate) {
-        this.truckLicensePlate = truckLicensePlate;
-    }
-
     public boolean isAvailable() {
         return isAvailable;
     }
@@ -62,10 +45,6 @@ public class Truck {
 
     public double getTruckWeight() {
         return truckWeight;
-    }
-
-    public void setTruckWeight(double truckWeight) {
-        this.truckWeight = truckWeight;
     }
 
     public int getMileage() {

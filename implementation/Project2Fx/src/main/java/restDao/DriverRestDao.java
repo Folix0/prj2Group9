@@ -206,8 +206,8 @@ public class DriverRestDao implements DAOlite<Driver>{
     }
 
     @Override
-    public Driver update(Driver driver) {
-        return null;
+    public void update(Driver driver) {
+
     }
 
     @Override

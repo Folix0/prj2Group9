@@ -50,7 +50,7 @@ public class AddNewEmployeeController implements Initializable {
         Boolean hazardous = this.HazardousLicense.isSelected();
 
 
-        Driver driver = new Driver(true, hazardous, fName, lName, birthDate, email, phoneNumber, address);
+        Driver driver = new Driver(1,true, hazardous, fName, lName, birthDate, email, phoneNumber, address);
 
         DriverRestDao driverRestDao = new DriverRestDao();
 

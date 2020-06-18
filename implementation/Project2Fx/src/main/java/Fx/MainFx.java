@@ -18,6 +18,7 @@ import java.net.http.HttpResponse;
 public class MainFx extends Application {
     private static Stage primaryStage;
     private static BorderPane mainLayout;
+
     @Override
     public void start(Stage primaryStage) throws IOException, InterruptedException {
         this.primaryStage = primaryStage;

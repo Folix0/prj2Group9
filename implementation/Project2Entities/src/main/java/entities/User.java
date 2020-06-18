@@ -5,15 +5,12 @@ import java.time.LocalDate;
 public class User {
 
 
-    private String firstName;
+    private final String firstName;
     private String lastName;
-    private LocalDate birthDate; //TODO change birthYear to birthDate in diagram
+    private final LocalDate birthDate; //TODO change birthYear to birthDate in diagram
     private String email;
     private String phoneNumber;
     private String address;
-
-
-    public User() {}
 
     public User(String firstName, String lastName, LocalDate birthDate, String email, String phoneNumber, String address) {
         this.firstName = firstName;
@@ -48,16 +45,8 @@ public class User {
         return address;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
     }
 
     public void setEmail(String email) {

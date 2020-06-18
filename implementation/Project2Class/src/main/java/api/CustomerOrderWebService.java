@@ -65,6 +65,22 @@ public class CustomerOrderWebService {
             return Response.status(Response.Status.GONE).build();
         }
     }
+
+    @POST
+    @Path("customerorder/update")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void update(CustomerOrder order) {
+        System.out.println(order);
+        db.update(order);
+    }
+
+    @POST
+    @Path("customerorder/delete")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void delete(CustomerOrder order){
+        System.out.println(order);
+        db.delete(order);
+    }
 }
 
 

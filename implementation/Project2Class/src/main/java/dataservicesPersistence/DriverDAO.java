@@ -29,7 +29,6 @@ public class DriverDAO implements DAOlite<Driver,Integer> {
                  ResultSet rs = statement.executeQuery(sql)) {
 
                 if (rs.next()) {
-
                     int driverId = rs.getInt("id");
                     String firstName = rs.getString("firstname");
                     String lastName = rs.getString("lastname");
@@ -40,13 +39,13 @@ public class DriverDAO implements DAOlite<Driver,Integer> {
                     boolean isAvailable = rs.getBoolean("isavailable");
                     boolean hasHazardousLicense = rs.getBoolean("hashazardouslicense");
 
-
                     driver = Optional.of(new Driver( driverId,isAvailable,hasHazardousLicense,
                             firstName,lastName,birthDate,email,phoneNumber,address));
 
                     LOGGER.log(Level.INFO, "Found {0} in database", driver.get());
                 }
-            } catch (SQLException ex) {
+            }
+            catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }
 
@@ -61,7 +60,8 @@ public class DriverDAO implements DAOlite<Driver,Integer> {
 
         connection.ifPresent(conn -> {
             try (Statement statement = conn.createStatement();
-                 ResultSet rs = statement.executeQuery(sql)) {
+                 ResultSet rs = statement.executeQuery(sql))
+            {
 
                 while (rs.next()) {
 
@@ -84,7 +84,8 @@ public class DriverDAO implements DAOlite<Driver,Integer> {
                     LOGGER.log(Level.INFO, "Found {0} in database", drivers);
                 }
 
-            } catch (SQLException ex) {
+            }
+            catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }
         });
@@ -105,7 +106,8 @@ public class DriverDAO implements DAOlite<Driver,Integer> {
             Optional<Integer> generatedId = Optional.empty();
 
             try (PreparedStatement statement = conn.prepareStatement(sql,
-                    Statement.RETURN_GENERATED_KEYS)) {
+                    Statement.RETURN_GENERATED_KEYS))
+            {
 
                 statement.setString(1, nonNullUser.getFirstName());
                 statement.setString(2, nonNullUser.getLastName());
@@ -130,7 +132,8 @@ public class DriverDAO implements DAOlite<Driver,Integer> {
 
                 LOGGER.log(Level.INFO, "{0} created successfully? {1}",
                         new Object[]{nonNullUser, numberOfInsertedRows > 0});
-            } catch (SQLException ex) {
+            }
+            catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }
 
@@ -157,7 +160,8 @@ public class DriverDAO implements DAOlite<Driver,Integer> {
                     + "id = ?";
 
             connection.ifPresent(conn -> {
-                try (PreparedStatement statement = conn.prepareStatement(sql)) {
+                try (PreparedStatement statement = conn.prepareStatement(sql))
+                {
 
                     statement.setString(1, nonNullUser.getFirstName());
                     statement.setString(2, nonNullUser.getLastName());
@@ -175,7 +179,8 @@ public class DriverDAO implements DAOlite<Driver,Integer> {
                     LOGGER.log(Level.INFO, "Was the Driver updated successfully? {0}",
                             numberOfUpdatedRows > 0);
 
-                } catch (SQLException ex) {
+                }
+                catch (SQLException ex) {
                     LOGGER.log(Level.SEVERE, null, ex);
                 }
             });
@@ -189,7 +194,8 @@ public class DriverDAO implements DAOlite<Driver,Integer> {
         String sql = "DELETE FROM driver WHERE id = ?";
 
         connection.ifPresent(conn -> {
-            try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            try (PreparedStatement statement = conn.prepareStatement(sql))
+            {
 
                 statement.setInt(1, nonNullUser.getId());
 
@@ -198,7 +204,8 @@ public class DriverDAO implements DAOlite<Driver,Integer> {
                 LOGGER.log(Level.INFO, "Was the Driver deleted successfully? {0}",
                         numberOfDeletedRows > 0);
 
-            } catch (SQLException ex) {
+            }
+            catch (SQLException ex) {
                 LOGGER.log(Level.SEVERE, null, ex);
             }
         });

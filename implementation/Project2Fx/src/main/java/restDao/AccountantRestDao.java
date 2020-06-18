@@ -119,8 +119,8 @@ public class AccountantRestDao implements DAOlite<Accountant>{
     }
 
     @Override
-    public Accountant update(Accountant accountant) {
-        return null;
+    public void update(Accountant accountant) {
+
     }
 
     @Override
